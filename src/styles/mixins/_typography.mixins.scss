@@ -1,0 +1,151 @@
+@use '../variables';
+@use 'breakpoints.mixins';
+
+@mixin typography-body-fixed-body-1 {
+	font-family: variables.$font-base;
+	font-size: 18px;
+	font-weight: 400;
+	line-height: 24px;
+}
+
+@mixin typography-body-fixed-body-1-emphasized {
+	font-family: variables.$font-base;
+	font-size: 18px;
+	line-height: 24px;
+	font-weight: 500;
+}
+
+@mixin typography-body-fixed-body-2 {
+	font-family: variables.$font-base;
+	font-size: 16px;
+	font-weight: 400;
+	line-height: 22px;
+}
+
+@mixin typography-body-fixed-body-2-emphasized {
+	font-family: variables.$font-base;
+	font-size: 16px;
+	line-height: 22px;
+	font-weight: 500;
+}
+
+@mixin typography-footnote-fixed-footnote {
+	font-family: variables.$font-base;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+}
+
+@mixin typography-footnote-fixed-footnote-emphasized {
+	font-family: variables.$font-base;
+	font-size: 14px;
+	line-height: 20px;
+	font-weight: 500;
+}
+
+@mixin _typography-h() {
+	font-family: variables.$font-base;
+	font-weight: normal;
+	text-align: left;
+	margin: 0;
+
+	.subtitle {
+		font-size: 0.5em;
+		line-height: normal;
+		margin-top: 1em;
+	}
+}
+
+@mixin typography-h1-title() {
+	font-family: variables.$font-base;
+	font-size: 42px;
+	line-height: 46px;
+	font-weight: 500;
+
+	@include breakpoints.media-gtmd() {
+		font-family: variables.$font-base;
+		font-size: 56px;
+		line-height: 60px;
+	}
+}
+
+@mixin typography-h1 {
+	@include _typography-h();
+	font-size: 36px;
+	line-height: 42px;
+	margin-bottom: variables.$spacing-standard;
+
+	@include breakpoints.media-gtsm() {
+		font-size: 46px;
+		line-height: 52px;
+		margin-bottom: variables.$spacing-large;
+	}
+}
+
+@mixin typography-h2 {
+	@include _typography-h();
+	font-size: 28px;
+	line-height: 34px;
+	margin-bottom: variables.$spacing-standard;
+
+	@include breakpoints.media-gtmd() {
+		font-size: 40px;
+		line-height: 41px;
+	}
+}
+
+@mixin typography-h3 {
+	@include _typography-h();
+	font-size: 25px;
+	line-height: 30px;
+	margin-bottom: variables.$spacing-standard;
+
+	@include breakpoints.media-gtmd() {
+		font-size: 30px;
+		line-height: 36px;
+	}
+}
+
+@mixin typography-h4 {
+	@include _typography-h();
+	font-size: 22px;
+	line-height: 30px;
+	margin-bottom: variables.$spacing-standard;
+
+	@include breakpoints.media-gtmd() {
+		font-size: 26px;
+		line-height: 36px;
+	}
+}
+
+@mixin typography-h5 {
+	@include _typography-h();
+	font-size: 20px;
+	line-height: 23px;
+	margin-bottom: 10px;
+
+	@include breakpoints.media-gtmd() {
+		font-size: 24px;
+		line-height: 27px;
+		margin-bottom: variables.$spacing-standard;
+	}
+}
+
+@mixin typography-h6 {
+	@include _typography-h();
+	font-size: 18px;
+	line-height: 21px;
+	margin-bottom: 10px;
+
+	@include breakpoints.media-gtmd() {
+		font-size: 21px;
+		line-height: 24px;
+		margin-bottom: variables.$spacing-standard;
+	}
+}
+
+@mixin typography-body-fixed-body-1 {
+	font-size: 18px;
+	line-height: 24px;
+	font-family: variables.$font-base;
+}

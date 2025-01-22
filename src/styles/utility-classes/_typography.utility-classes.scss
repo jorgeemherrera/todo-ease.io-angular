@@ -1,0 +1,67 @@
+@use '../variables';
+@use '../mixins';
+
+html {
+	font-style: normal;
+}
+
+body {
+	@include mixins.typography-body-fixed-body-1();
+}
+
+/* Body (fixed)/Body 1 */
+.fixed-body-1 {
+	@include mixins.typography-body-fixed-body-1();
+}
+
+/* Body (fixed)/Body 1 emphasized */
+.fixed-body-1-emphasized {
+	@include mixins.typography-body-fixed-body-1-emphasized();
+}
+
+/* Body (fixed)/Body 2 */
+.fixed-body-2 {
+	@include mixins.typography-body-fixed-body-2();
+}
+
+/* Body (fixed)/Body 2 emphasized */
+.fixed-body-2-emphasized {
+	@include mixins.typography-body-fixed-body-2-emphasized();
+}
+
+/* Footnote (fixed)/Footnote */
+.fixed-footnote {
+	@include mixins.typography-footnote-fixed-footnote();
+}
+
+/* Footnote (fixed)/Footnote emphasized */
+.fixed-footnote-emphasized {
+	@include mixins.typography-footnote-fixed-footnote-emphasized();
+}
+
+/* Heading (fixed)/Heading 5 */
+.fixed-heading-5 {
+	@include mixins.typography-h5();
+}
+
+/* Heading (fixed)/Heading 6 */
+.fixed-heading-6 {
+	@include mixins.typography-h6();
+}
+
+label {
+	font-weight: normal;
+	margin-bottom: 0;
+}
+
+strong {
+	font-family: variables.$font-base;
+	font-weight: normal;
+}
+
+a {
+	color: inherit;
+	cursor: pointer;
+	text-decoration: underline;
+	text-underline-offset: 3px;
+}

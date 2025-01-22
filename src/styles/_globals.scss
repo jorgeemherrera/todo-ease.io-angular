@@ -1,0 +1,114 @@
+@use 'utils';
+
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+html {
+	font-family: sans-serif;
+	line-height: 1.15;
+	-ms-overflow-style: scrollbar;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+body {
+	margin: 0;
+	@include utils.typography-body-fixed-body-1();
+	text-align: left;
+	background-color: #fff;
+}
+
+[tabindex='-1']:focus:not(:focus-visible) {
+	outline: 0;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 1rem;
+}
+
+img {
+	vertical-align: middle;
+	border-style: none;
+}
+
+svg {
+	overflow: hidden;
+	vertical-align: middle;
+}
+
+label {
+	display: inline-block;
+}
+
+input,
+button,
+select {
+	margin: 0;
+	font-family: inherit;
+	font-size: inherit;
+	line-height: inherit;
+}
+
+button,
+input {
+	overflow: visible;
+}
+
+button,
+select {
+	text-transform: none;
+}
+
+select {
+	word-wrap: normal;
+}
+
+button {
+	-webkit-appearance: button;
+}
+
+button:not(:disabled) {
+	cursor: pointer;
+}
+
+button::-moz-focus-inner {
+	padding: 0;
+	border-style: none;
+}
+
+::-webkit-file-upload-button {
+	font: inherit;
+	-webkit-appearance: button;
+}
+
+h1 {
+	@include utils.typography-h1();
+
+	&.title {
+		@include utils.typography-h1-title();
+	}
+}
+
+h2 {
+	@include utils.typography-h2();
+}
+
+h3 {
+	@include utils.typography-h3();
+}
+
+h4 {
+	@include utils.typography-h4();
+}
+
+h5 {
+	@include utils.typography-h5();
+}
+
+h6 {
+	@include utils.typography-h6();
+}

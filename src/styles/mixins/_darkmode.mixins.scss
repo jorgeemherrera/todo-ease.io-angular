@@ -1,0 +1,19 @@
+
+
+@mixin theme($light-theme: true) {
+    @if $light-theme {
+        background-color: #F1F1F1;
+        color: black;
+    } @else {
+        background-color: #262c39;
+        color: white;
+    }
+}
+
+[data-theme="light"] {
+    @include theme(true);
+}
+
+[data-theme="dark"] {
+    @include theme(false);
+}
