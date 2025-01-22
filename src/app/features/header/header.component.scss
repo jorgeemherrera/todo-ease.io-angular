@@ -1,0 +1,65 @@
+@use "../../../styles/utils";
+
+.header {
+  width: 100%;
+  height: utils.pxToRem(70px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 utils.pxToRem(20px);
+  background-color: white;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  color: var(--text-color);
+  border-top-left-radius: utils.pxToRem(8px);
+  border-top-right-radius: utils.pxToRem(8px);
+
+  [data-theme="dark"] & {
+    background-color: #2d3748;
+  }
+
+  &-title {
+    font-size: utils.pxToRem(24px);
+    font-weight: bold;
+    margin-bottom: 0;
+  }
+s
+  .theme-toggle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: utils.pxToRem(40px);
+    height: utils.pxToRem(40px);
+    border: none;
+    border-radius: 50%;
+    background-color: var(--toggle-bg-color);
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: var(--toggle-hover-bg-color);
+    }
+
+    .icon {
+      width: utils.pxToRem(24px);
+      height: utils.pxToRem(24px);
+      color: var(--icon-color);
+      margin: 0;
+    }
+  }
+}
+
+[data-theme="light"] {
+  --background-color: #f7f7f7;
+  --text-color: #333333;
+  --toggle-bg-color: #e2e8f0;
+  --toggle-hover-bg-color: #cbd5e1;
+  --icon-color: #1a202c;
+}
+
+[data-theme="dark"] {
+  --background-color: #1a202c;
+  --text-color: #e2e8f0;
+  --toggle-bg-color: #4a5568;
+  --toggle-hover-bg-color: #2d3748;
+  --icon-color: #f7f7f7;
+}

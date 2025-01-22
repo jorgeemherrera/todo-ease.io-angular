@@ -49,12 +49,12 @@ export class DbService {
     await db.delete(tasksStoreName, id);
   }
 
-  async saveAction(action: ChatMessage): Promise<void> {
+  async saveAction(action: any): Promise<void> {
     const db = await this.dbPromise;
     await db.put(actionsStoreName, action);
   }
 
-  async getActions(): Promise<ChatMessage[]> {
+  async getActions(): Promise<any[]> {
     const db = await this.dbPromise;
     const actions = await db.getAll(actionsStoreName);
     return actions.sort((a, b) => (b.createdAt > a.createdAt ? 1 : -1));
