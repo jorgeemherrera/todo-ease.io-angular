@@ -2,7 +2,9 @@
   <p class="sidebar-description">{{ task.description }}</p>
   <p class="sidebar-due-date">
     Fecha límite: {{ task.dueDate || 'Sin fecha' }}
-    <span *ngIf="task.status === 'Overdue'" class="sidebar-overdue">(Vencido)</span>
+    @if (task.status) {
+      <span class="sidebar-overdue">(Vencido)</span>
+    }
   </p>
   <h4 class="sidebar-checklist-title">Estado</h4>
   <div class="sidebar-status-container">

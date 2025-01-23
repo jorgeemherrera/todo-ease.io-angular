@@ -1,5 +1,4 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -8,7 +7,7 @@ import { FormsModule } from '@angular/forms';
   styleUrls: ['./sidebar-details.component.scss'],
   standalone: true,
   imports: [
-    BrowserModule,
+
     FormsModule
   ],
 })
