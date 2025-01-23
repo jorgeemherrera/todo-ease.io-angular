@@ -1,0 +1,12 @@
+<aside class="sidebar">
+  @if (selectedTask$ | async; as task) {
+    <ng-container>
+      <app-sidebar-header [task]="task"/>
+      <app-sidebar-details [task]="task"/>
+      <app-sidebar-checklist [checklist]="task.checklist"/>
+    </ng-container>
+  }
+  <ng-template #noTask>
+    <p>Selecciona un ticket para ver los detalles</p>
+  </ng-template>
+</aside>

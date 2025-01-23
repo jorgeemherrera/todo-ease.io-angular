@@ -1,0 +1,82 @@
+@use "../../../../../styles/utils";
+
+.sidebar-description {
+    margin-top: utils.pxToRem(12px);
+    color: utils.$cool-gray;
+
+    [data-theme="dark"] & {
+        color: utils.$soft-gray;
+    }
+}
+
+.sidebar-due-date {
+    margin-top: utils.pxToRem(24px);
+    font-size: utils.pxToRem(16px);
+    color: utils.$blue-gray;
+
+    .sidebar-overdue {
+        color: utils.$tomato;
+        font-weight: bold;
+    }
+}
+
+.sidebar-status-container {
+    display: flex;
+    align-items: center;
+    gap: utils.pxToRem(16px);
+    margin: utils.pxToRem(16px) 0;
+
+    .sidebar-status {
+        padding: utils.pxToRem(8px) utils.pxToRem(16px);
+        font-size: utils.pxToRem(16px);
+        font-weight: bold;
+        border-radius: utils.pxToRem(8px);
+        text-transform: capitalize;
+
+        &.overdue {
+            background-color: utils.$crimson;
+            color: utils.$white;
+        }
+
+        &.completed {
+            background-color: utils.$success-green;
+            color: utils.$white;
+        }
+
+        &.in-progress {
+            background-color: utils.$sky-blue;
+            color: utils.$white;
+        }
+
+        &.open {
+            background-color: utils.$slate-gray;
+            color: utils.$white;
+        }
+    }
+
+    .sidebar-status-selector {
+        padding: utils.pxToRem(8px);
+        border-radius: utils.pxToRem(8px);
+        border: utils.pxToRem(1px) solid utils.$silver-alt;
+        background-color: utils.$white;
+        color: utils.$dim-gray;
+        font-size: utils.pxToRem(16px);
+        cursor: pointer;
+        transition: border-color 0.3s, background-color 0.3s;
+
+        &:focus {
+            outline: none;
+            border-color: utils.$violet;
+        }
+
+        [data-theme="dark"] & {
+            background-color: utils.$cool-gray;
+            color: utils.$light-silver;
+            border-color: utils.$dark-charcoal;
+
+            &:hover {
+                background-color: utils.$gunmetal;
+            }
+        }
+    }
+}

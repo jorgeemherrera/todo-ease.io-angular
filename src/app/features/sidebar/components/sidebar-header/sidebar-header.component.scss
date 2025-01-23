@@ -1,0 +1,17 @@
+@use "../../../../../styles/utils";
+
+.sidebar-header {
+    font-size: utils.pxToRem(28px);
+    font-weight: 700;
+    color: utils.$charcoal;
+
+    [data-theme="dark"] & {
+        color: utils.$light-silver;
+    }
+}
+
+.sidebar-title {
+    font-size: utils.pxToRem(24px);
+    font-weight: 600;
+    margin-top: utils.pxToRem(8px);
+}

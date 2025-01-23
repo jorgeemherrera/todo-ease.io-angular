@@ -1,0 +1,17 @@
+@use "../../../../../styles/utils";
+
+.sidebar {
+  width: 50%;
+  max-height: 80%;
+  background-color: utils.$white;
+  padding: utils.pxToRem(20px);
+  border-bottom-left-radius: utils.pxToRem(12px);
+  [data-theme="dark"] & {
+    background-color: #2d3748;
+    color: utils.$light-silver;
+  }
+
+  @include utils.media-ltlg(){
+    width: 100%;
+  }
+}

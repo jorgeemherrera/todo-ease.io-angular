@@ -1,0 +1,21 @@
+<section>
+  <p class="sidebar-description">{{ task.description }}</p>
+  <p class="sidebar-due-date">
+    Fecha límite: {{ task.dueDate || 'Sin fecha' }}
+    <span *ngIf="task.status === 'Overdue'" class="sidebar-overdue">(Vencido)</span>
+  </p>
+  <h4 class="sidebar-checklist-title">Estado</h4>
+  <div class="sidebar-status-container">
+    <span class="sidebar-status">{{ task.status }}</span>
+    <select
+      class="sidebar-status-selector"
+      [(ngModel)]="task.status"
+      (change)="statusChange.emit(task.status)"
+    >
+      <option value="Open">Abierto</option>
+      <option value="In Progress">En Progreso</option>
+      <option value="Completed">Completado</option>
+      <option value="Overdue">Vencido</option>
+    </select>
+  </div>
+</section>

@@ -18,6 +18,7 @@ export class DbService {
   }
 
   private async initDB(): Promise<IDBPDatabase> {
+    console.log('Initializing IndexedDB...');
     return await openDB(dbName, 2, {
       upgrade(db, oldVersion) {
         if (oldVersion < 1) {
@@ -33,6 +34,7 @@ export class DbService {
       },
     });
   }
+  
 
   async saveTask(task: any): Promise<void> {
     const db = await this.dbPromise;
@@ -41,7 +43,9 @@ export class DbService {
 
   async getTasks(): Promise<any[]> {
     const db = await this.dbPromise;
-    return await db.getAll(tasksStoreName);
+    const tasks = await db.getAll(tasksStoreName);
+    console.log('Tareas obtenidas desde IndexedDB:', tasks);
+    return tasks;
   }
 
   async deleteTask(id: string): Promise<void> {

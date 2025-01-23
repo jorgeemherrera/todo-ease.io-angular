@@ -1,0 +1,89 @@
+@use "../../../../../styles/utils";
+
+.sidebar-checklist {
+    margin-top: utils.pxToRem(16px);
+    list-style: none;
+    padding: 0;
+    overflow-y: scroll;
+    height: 250px;
+
+    @include utils.media-lg() {
+        height: 200px;
+    }
+
+    li {
+        display: flex;
+        flex-direction: column;
+        gap: utils.pxToRem(4px);
+        margin-top: utils.pxToRem(12px);
+        font-size: utils.pxToRem(16px);
+        color: utils.$dark-charcoal;
+        padding: utils.pxToRem(8px);
+        border-radius: utils.pxToRem(8px);
+
+        &.overdue {
+            background-color: utils.$light-pink;
+            color: utils.$tomato;
+        }
+
+        [data-theme="dark"] & {
+            background-color: utils.$cool-gray;
+            color: utils.$light-silver;
+
+            &.overdue {
+                background-color: utils.$tomato;
+                color: utils.$white;
+            }
+        }
+
+        .custom-checkbox {
+            display: flex;
+            align-items: center;
+            gap: utils.pxToRem(12px);
+            cursor: pointer;
+            position: relative;
+
+            input {
+                appearance: none;
+                width: 1.25rem;
+                height: 1.25rem;
+                border: 0.125rem solid utils.$violet;
+                border-radius: 0.25rem;
+                cursor: pointer;
+                transition: background-color 0.3s, border-color 0.3s;
+
+                &:checked {
+                    background-color: utils.$violet;
+                    border-color: utils.$violet;
+
+                    [data-theme="dark"] & {
+                        background-color: utils.$amethyst;
+                        border-color: utils.$amethyst;
+                    }
+                }
+
+                &:focus {
+                    box-shadow: 0 0 0 utils.pxToRem(3px) rgba(utils.$sky-blue, 0.25);
+                }
+            }
+
+            .custom-checkbox-label {
+                font-size: utils.pxToRem(16px);
+                color: utils.$dark-charcoal;
+
+                [data-theme="dark"] & {
+                    color: utils.$light-silver;
+                }
+            }
+        }
+
+        .checklist-due-date {
+            font-size: utils.pxToRem(14px);
+            color: utils.$blue-gray;
+
+            [data-theme="dark"] & {
+                color: utils.$blue-gray-alt;
+            }
+        }
+    }
+}
