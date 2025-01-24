@@ -39,69 +39,69 @@ export class InputComponent {
 
 
 
-	deleteConfirmation: boolean = false;
-  helpVisible: boolean = false;
+	// deleteConfirmation: boolean = false;
+  // helpVisible: boolean = false;
 
-  private deleteTimeout: any;
+  // private deleteTimeout: any;
 
-  ngOnInit() {}
+  // ngOnInit() {}
 
-  handleInput(event: Event): void {
-		const input = (event.target as HTMLInputElement).value.trim();
-		const action = input.split(' ')[0].toUpperCase();
+  // handleInput(event: Event): void {
+	// 	const input = (event.target as HTMLInputElement).value.trim();
+	// 	const action = input.split(' ')[0].toUpperCase();
 	
-		if (['CREAR', 'EDITAR', 'BORRAR'].includes(action)) {
-			this.commandChange.emit({ command: action, text: input });
-			this.helpVisible = false;
-		} else {
-			this.commandChange.emit({ command: '', text: '' });
-			this.helpVisible = true;
-		}
+	// 	if (['CREAR', 'EDITAR', 'BORRAR'].includes(action)) {
+	// 		this.commandChange.emit({ command: action, text: input });
+	// 		this.helpVisible = false;
+	// 	} else {
+	// 		this.commandChange.emit({ command: '', text: '' });
+	// 		this.helpVisible = true;
+	// 	}
 	
-		if (action !== 'BORRAR') {
-			this.deleteConfirmation = false;
-		}
-	}
+	// 	if (action !== 'BORRAR') {
+	// 		this.deleteConfirmation = false;
+	// 	}
+	// }
 
-  handleKeyDown(event: KeyboardEvent): void {
-		if (event.key === 'Enter') {
-			const input = event.target as HTMLInputElement;
-			const value = input.value.trim();
-			if (!value) return;
+  // handleKeyDown(event: KeyboardEvent): void {
+	// 	if (event.key === 'Enter') {
+	// 		const input = event.target as HTMLInputElement;
+	// 		const value = input.value.trim();
+	// 		if (!value) return;
 	
-			const [action, ...args] = value.split(' ');
-			const title = args.join(' ');
+	// 		const [action, ...args] = value.split(' ');
+	// 		const title = args.join(' ');
 	
-			if (action.toUpperCase() === 'BORRAR') {
-				if (!this.deleteConfirmation) {
-					this.deleteConfirmation = true;
-					this.deleteTimeout = setTimeout(() => (this.deleteConfirmation = false), 5000);
-					return;
-				}
-			}
+	// 		if (action.toUpperCase() === 'BORRAR') {
+	// 			if (!this.deleteConfirmation) {
+	// 				this.deleteConfirmation = true;
+	// 				this.deleteTimeout = setTimeout(() => (this.deleteConfirmation = false), 5000);
+	// 				return;
+	// 			}
+	// 		}
 	
-			// Emitir un objeto con las propiedades action y title
-			this.commandExecute.emit({ action: action.toUpperCase(), title });
+	// 		// Emitir un objeto con las propiedades action y title
+	// 		this.commandExecute.emit({ action: action.toUpperCase(), title });
 	
-			input.value = '';
-			this.commandChange.emit({ command: '', text: '' });
-			this.deleteConfirmation = false;
-		}
-	}
+	// 		input.value = '';
+	// 		this.commandChange.emit({ command: '', text: '' });
+	// 		this.deleteConfirmation = false;
+	// 	}
+	// }
 
-  handleFocus(): void {
-    this.helpVisible = true;
-  }
+  // handleFocus(): void {
+  //   this.helpVisible = true;
+  // }
 
-  handleBlur(): void {
-    this.helpVisible = false;
-  }
+  // handleBlur(): void {
+  //   this.helpVisible = false;
+  // }
 
-  ngOnDestroy(): void {
-    if (this.deleteTimeout) {
-      clearTimeout(this.deleteTimeout);
-    }
-  }
+  // ngOnDestroy(): void {
+  //   if (this.deleteTimeout) {
+  //     clearTimeout(this.deleteTimeout);
+  //   }
+  // }
 
   
 }
