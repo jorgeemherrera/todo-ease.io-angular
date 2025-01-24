@@ -1,5 +1,6 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { DbService } from '../../../../core/services/db.service';
 
 interface ChecklistItem {
   id: string;
@@ -16,6 +17,7 @@ interface Task {
   dueDate: string;
   status: 'Open' | 'In Progress' | 'Completed' | 'Overdue';
   checklist: ChecklistItem[];
+  createdAt: string;
 }
 
 @Component({
@@ -26,17 +28,18 @@ interface Task {
   imports: [FormsModule],
 })
 export class TaskFormComponent implements OnChanges {
-  @Input() initialData: any = {
+  @Input() initialData: Task = {
     id: '',
     title: '',
     description: '',
     dueDate: '',
     status: 'Open',
     checklist: [],
+    createdAt: '',
   };
   @Output() save = new EventEmitter<Task>();
   @Output() cancel = new EventEmitter<void>();
-
+  readonly dbService = inject(DbService)
   title: string = '';
   description: string = '';
   dueDate: string = '';
@@ -60,9 +63,25 @@ export class TaskFormComponent implements OnChanges {
 
   removeChecklistItem(index: number): void {
     if (index >= 0 && index < this.checklist.length) {
-      this.checklist.splice(index, 1); 
+      this.checklist.splice(index, 1);
+  
+      const updatedTask = {
+        ...this.initialData,
+        checklist: this.checklist,
+      };
+
+      if (updatedTask.id) {
+        this.dbService.saveTask(updatedTask).then(() => {
+        }).catch((error) => {
+          console.error(error);
+        });
+      }
+  
+      this.checklist = [...this.checklist];
     }
   }
+  
+  
 
   saveTask(): void {
     if (!this.title.trim() || !this.description.trim()) {
@@ -80,6 +99,7 @@ export class TaskFormComponent implements OnChanges {
       dueDate: this.dueDate,
       status: isOverdue ? 'Overdue' : this.status,
       checklist: this.checklist,
+      createdAt: ''
     };
     this.save.emit(updatedTask);
   }

@@ -57,10 +57,8 @@
       </button>
     </header>
     <ul class="task-form-checklist-items">
-      @for (item of checklist; track item; let i = $count) {
-        <li
-          [class.task-form-checklist-item-overdue]="item.isOverdue"
-        >
+      @for (item of checklist; track item.id; let i = $index) {
+        <li [class.task-form-checklist-item-overdue]="item.isOverdue">
           <input
             type="checkbox"
             [(ngModel)]="item.checked"
@@ -75,14 +73,15 @@
             [(ngModel)]="item.dueDate"
           />
           <button
-          class="task-form-delete-btn"
-          (click)="removeChecklistItem(i)"
-        >
-          ×
-        </button>
+            class="task-form-delete-btn"
+            (click)="removeChecklistItem(i)"
+          >
+            ×
+          </button>
         </li>
       }
     </ul>
+    
   </div>
 
   <footer class="task-form-actions">

@@ -26,7 +26,6 @@ export class TaskService {
     this.tasksSubject.next([...tasks, task]);
   }
   
-
   updateTask(updatedTask: Task): void {
     const tasks = this.tasksSubject.getValue();
     const index = tasks.findIndex((task) => task.id === updatedTask.id);
