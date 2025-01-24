@@ -1,6 +1,6 @@
 # EASE.IO TECHNICAL TEST
 
-This is a React application that integrates SASS and TypeScript to create a dynamic to-do list. The app allows users to create tasks with proper classification, such as Pending, In Progress, Open, and Completed. Tasks can also include a checklist with an expiration date. Users can filter tasks by their classification for better organization. The application features a modern UI with a toggle for dark and light modes, ensuring a seamless user experience. Additionally, all data is stored locally using IndexedDB, ensuring persistence even when the app is refreshed or accessed offline.
+This is a Angular 18 application that integrates SASS and TypeScript to create a dynamic to-do list. The app allows users to create tasks with proper classification, such as Pending, In Progress, Open, and Completed. Tasks can also include a checklist with an expiration date. Users can filter tasks by their classification for better organization. The application features a modern UI with a toggle for dark and light modes, ensuring a seamless user experience. Additionally, all data is stored locally using IndexedDB, ensuring persistence even when the app is refreshed or accessed offline.
 
 ## Table of Contents
 
