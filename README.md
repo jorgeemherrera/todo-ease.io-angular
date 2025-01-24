@@ -67,7 +67,7 @@ Run the app in development mode:
 - You can use commands in the input, such as: DELETE, EDIT, CREATE.
 - You can create a task by simply entering the task title.
 
-on your browser to view the app: [jorgeemherrera.github.io/todo-Ease.io-angular](https://github.com/jorgeemherrera/todo-ease.io-angular).
+on your browser to view the app: https://jorgeemherrera.github.io/todo-ease.io-angular/.
 
 ### Customization
 
