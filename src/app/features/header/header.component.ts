@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, effect } from '@angular/core';
 import { ThemeService } from '../../core/services/theme.service';
 
 @Component({
@@ -12,7 +12,9 @@ export class HeaderComponent {
   readonly themeService = inject(ThemeService);
 
   constructor() {
-    this.theme.set(this.themeService.getTheme());
+    effect(() => {
+          this.theme.set(this.themeService.getTheme());
+        }, { allowSignalWrites: true });
   }
 
   toggleTheme(): void {

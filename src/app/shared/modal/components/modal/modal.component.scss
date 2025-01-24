@@ -41,7 +41,7 @@
     width: utils.pxToRem(644px);
   }
 
-  [data-theme="dark"] & {
+  ::ng-deep [data-theme="dark"] & {
     background-color: utils.$dark-charcoal;
     color: utils.$light-silver;
   }
@@ -53,13 +53,14 @@
   align-items: center;
   border-bottom: utils.pxToRem(1px) solid utils.$gainsboro-alt;
   height: utils.pxToRem(40px);
+  color: inherit;
 
   .modal-title {
     font-size: utils.pxToRem(24px);
     font-weight: bold;
-    color: utils.$dim-gray;
+    color: inherit;
 
-    [data-theme="dark"] & {
+    ::ng-deep [data-theme="dark"] & {
       color: utils.$light-silver;
     }
   }
@@ -71,7 +72,7 @@
   color: utils.$medium-gray;
   line-height: 1.6;
 
-  [data-theme="dark"] & {
+  ::ng-deep [data-theme="dark"] & {
     color: utils.$soft-gray;
   }
 }
@@ -95,7 +96,7 @@
     color: utils.$danger-red;
   }
 
-  [data-theme="dark"] & {
+  ::ng-deep [data-theme="dark"] & {
     color: utils.$soft-gray;
 
     &:hover {

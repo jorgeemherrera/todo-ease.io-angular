@@ -1,53 +1,57 @@
 @use "../../../../../styles/utils";
 
 .task-form-group {
-    margin-bottom: utils.pxToRem(16px);
+  margin-bottom: utils.pxToRem(16px);
 
-    label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: utils.pxToRem(8px);
+  label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: utils.pxToRem(8px);
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: utils.pxToRem(12px);
+    border: none;
+    border-radius: utils.pxToRem(8px);
+    font-size: utils.pxToRem(16px);
+    transition: border-color 0.3s, box-shadow 0.3s;
+
+    ::ng-deep [data-theme="dark"] & {
+      background-color: utils.$cool-gray;
+      color: utils.$light-silver;
+      border-color: utils.$dark-charcoal;
+
+      &::placeholder {
+        color: utils.$blue-gray-alt;
+      }
+    }
+    ::ng-deep [data-theme="light"] & {
+      background-color: utils.$white-lilac;
+      border: utils.pxToRem(1px) solid utils.$platinum;
+
+      &::placeholder {
+        color: utils.$blue-gray-alt;
+      }
     }
 
-    input,
-    textarea,
-    select {
-        width: 100%;
-        padding: utils.pxToRem(12px);
-        border: utils.pxToRem(1px) solid utils.$platinum;
-        border-radius: utils.pxToRem(8px);
-        font-size: utils.pxToRem(16px);
-        background-color: utils.$white-lilac;
-        transition:
-            border-color 0.3s,
-            box-shadow 0.3s;
-
-        &:focus {
-            border-color: utils.$violet;
-            box-shadow: 0 0 utils.pxToRem(4px) utils.$violet;
-            outline: none;
-        }
-
-        &::placeholder {
-            color: utils.$gray-alt;
-        }
-
-        [data-theme="dark"] & {
-            background-color: utils.$cool-gray;
-            color: utils.$light-silver;
-            border-color: utils.$dark-charcoal;
-
-            &::placeholder {
-                color: utils.$blue-gray-alt;
-            }
-        }
+    &:focus {
+      border-color: utils.$violet;
+      box-shadow: 0 0 utils.pxToRem(4px) utils.$violet;
+      outline: none;
     }
+
+    &::placeholder {
+      color: utils.$gray-alt;
+    }
+  }
 }
 
 textarea {
-    resize: none;
+  resize: none;
 }
-
 
 .task-form-checklist {
   margin-top: utils.pxToRem(20px);
@@ -76,7 +80,7 @@ textarea {
         background-color: utils.$electric-purple;
       }
 
-      [data-theme="dark"] & {
+      ::ng-deep [data-theme="dark"] & {
         background-color: utils.$amethyst;
 
         &:hover {
@@ -94,8 +98,8 @@ textarea {
     border: utils.pxToRem(1px) solid utils.$grayish-white;
     border-radius: utils.pxToRem(8px);
     background-color: utils.$white-lilac;
-
-    [data-theme="dark"] & {
+    
+    ::ng-deep [data-theme="dark"] & {
       background-color: utils.$dark-charcoal;
       border: none;
     }
@@ -118,12 +122,12 @@ textarea {
       align-items: center;
       gap: utils.pxToRem(12px);
       padding: utils.pxToRem(12px);
-      background-color: utils.$white;
+
       border-radius: utils.pxToRem(8px);
       margin-bottom: utils.pxToRem(8px);
       transition: transform 0.2s;
 
-      [data-theme="dark"] & {
+      ::ng-deep [data-theme="dark"] & {
         background-color: utils.$ash-gray;
       }
 
@@ -169,7 +173,7 @@ textarea {
       input[type="date"] {
         flex: 1;
         padding: utils.pxToRem(10px);
-        border: utils.pxToRem(1px) solid utils.$platinum;
+        border: none;
         border-radius: utils.pxToRem(8px);
         font-size: utils.pxToRem(14px);
         transition: border-color 0.3s;
@@ -180,15 +184,19 @@ textarea {
           outline: none;
         }
 
-        [data-theme="dark"] & {
+        ::ng-deep [data-theme="dark"] & {
           background-color: utils.$cool-gray;
-          border-color: utils.$dark-charcoal;
+          border-color: none;
           color: utils.$light-silver;
+
+          &::placeholder{
+            color: white;
+          }
         }
       }
 
       .task-form-delete-btn {
-        background-color: none;
+        background-color: transparent;
         border: none;
         color: utils.$tomato;
         width: utils.pxToRem(20px);
@@ -200,7 +208,7 @@ textarea {
           color: utils.$red;
         }
 
-        [data-theme="dark"] & {
+        ::ng-deep [data-theme="dark"] & {
           color: utils.$salmon;
 
           &:hover {
@@ -212,62 +220,63 @@ textarea {
   }
 }
 
-
-
 .task-form-actions {
-	display: flex;
-	justify-content: space-between;
-	margin-top: utils.pxToRem(20px);
+  display: flex;
+  justify-content: space-between;
+  margin-top: utils.pxToRem(20px);
 
-	button {
-			padding: utils.pxToRem(12px) utils.pxToRem(24px);
-			font-size: utils.pxToRem(16px);
-			border-radius: utils.pxToRem(8px);
-			cursor: pointer;
-			transition: background-color 0.3s;
+  button {
+    padding: utils.pxToRem(12px) utils.pxToRem(24px);
+    font-size: utils.pxToRem(16px);
+    border-radius: utils.pxToRem(8px);
+    cursor: pointer;
+    transition: background-color 0.3s;
 
-			&.cancel {
-					background-color: utils.$grayish-white;
-					border: none;
+    &.cancel {
+      border: none;
 
-					&:hover {
-							background-color: utils.$silver;
-					}
+      &:hover {
+        background-color: utils.$silver;
+      }
 
-					[data-theme="dark"] & {
-							background-color: utils.$cool-gray;
-							color: utils.$light-silver;
+      ::ng-deep [data-theme="dark"] & {
+        background-color: utils.$cool-gray;
+        color: utils.$light-silver;
 
-							&:hover {
-									background-color: utils.$gunmetal;
-							}
-					}
-			}
+        &:hover {
+          background-color: utils.$gunmetal;
+        }
+      }
+    }
 
-			&.save {
-					background-color: utils.$violet;
-					color: utils.$white;
-					border: none;
-					cursor: pointer;
-					transition: background-color 0.3s;
+    &.save {
+      background-color: utils.$violet;
+      color: utils.$white;
+      border: none;
+      cursor: pointer;
+      transition: background-color 0.3s;
 
-					&.save:hover {
-							background-color: utils.$electric-purple;
-					}
+      &.save:hover {
+        background-color: utils.$electric-purple;
+      }
 
-					[data-theme="dark"] & {
-							background-color: utils.$amethyst;
+      ::ng-deep [data-theme="dark"] & {
+        background-color: utils.$amethyst;
 
-							&:hover {
-									background-color: utils.$lavender-blue;
-							}
-					}
-			}
-	}
+        &:hover {
+          background-color: utils.$lavender-blue;
+        }
+      }
+    }
+  }
 }
 
 .task-form-error {
   color: utils.$tomato;
   font-size: utils.pxToRem(14px);
   margin-bottom: 0;
+}
+
+.task-title-first{
+  margin-top: 1rem;
 }

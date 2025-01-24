@@ -18,7 +18,7 @@
           color: utils.$slate-gray;
       }
 
-      [data-theme="dark"] & {
+      ::ng-deep [data-theme="dark"] & {
           background-color: utils.$dark-charcoal;
           color: utils.$light-silver;
 
@@ -107,8 +107,8 @@
       }
   }
 
-  [data-theme="dark"] & {
-      background: utils.$dark-charcoal;
+  ::ng-deep [data-theme="dark"] & {
+      background-color: utils.$dark-charcoal;
       color: utils.$light-silver;
       border-color: utils.$cool-gray;
 

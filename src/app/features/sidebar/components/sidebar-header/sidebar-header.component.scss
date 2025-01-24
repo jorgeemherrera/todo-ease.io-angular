@@ -5,7 +5,7 @@
     font-weight: 700;
     color: utils.$charcoal;
 
-    [data-theme="dark"] & {
+    ::ng-deep [data-theme="dark"] & {
         color: utils.$light-silver;
     }
 }

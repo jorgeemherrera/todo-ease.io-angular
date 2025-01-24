@@ -12,7 +12,7 @@
     width: 100%;
     border-top: utils.pxToRem(1px) solid utils.$silver-alt;
 
-    [data-theme="dark"] & {
+    ::ng-deep [data-theme="dark"] & {
         border-top: utils.pxToRem(1px) solid utils.$dark-gray !important;
     }
 
@@ -24,7 +24,7 @@
         font-size: utils.pxToRem(16px);
         border-bottom-right-radius: utils.pxToRem(12px);
 
-        [data-theme="dark"] & {
+        ::ng-deep [data-theme="dark"] & {
             background-color: utils.$dark-gray ;
         }
 
@@ -73,14 +73,10 @@
     border-left: utils.pxToRem(4px) solid utils.$charcoal;
     background-color: utils.$whisper;
 
-    [data-theme="dark"] & {
+    ::ng-deep [data-theme="dark"] & {
         border-left: utils.pxToRem(4px) solid utils.$amethyst-alt;
-        background-color: utils.$dark-charcoal;
+        background-color: #2D3748;
         color: utils.$white;
-    }
-
-    [data-theme="dark"] & {
-        background-color: utils.$pewter;
     }
 
     cursor: pointer;
@@ -97,7 +93,7 @@
         background-color: utils.$cornsilk;
         border-left: utils.pxToRem(4px) solid utils.$amber;
 
-        [data-theme="dark"] & {
+        ::ng-deep [data-theme="dark"] & {
             color: utils.$jet-black;
         }
     }
@@ -106,7 +102,7 @@
         background-color: utils.$blush;
         border-left: utils.pxToRem(4px) solid utils.$crimson;
 
-        [data-theme="dark"] & {
+        ::ng-deep [data-theme="dark"] & {
             color: utils.$jet-black;
         }
     }
@@ -125,20 +121,16 @@
 
         .message-title {
             font-weight: bold;
-            color: utils.$dim-gray;
+            color: inherit;
             margin: 0;
             font-size: utils.pxToRem(20px);
-
-            [data-theme="dark"] & {
-                color: inherit;
-            }
         }
 
         .message-time {
             font-size: utils.pxToRem(14px);
-            color: utils.$gray;
+            color: inherit;
             margin: 0;
-            [data-theme="dark"] & {
+            ::ng-deep [data-theme="dark"] & {
                 color: inherit;
             }
         }
@@ -150,16 +142,16 @@
             font-size: utils.pxToRem(16px);
             color: utils.$dim-gray;
 
-            [data-theme="dark"] & {
+            ::ng-deep [data-theme="dark"] & {
                 color: inherit;
             }
         }
 
         .message-due-date {
             font-size: utils.pxToRem(14px);
-            color: utils.$medium-gray;
+            color: inherit;
 
-            [data-theme="dark"] & {
+            ::ng-deep [data-theme="dark"] & {
                 color: inherit;
             }
         }
@@ -175,7 +167,7 @@
                 background-color: utils.$crimson;
                 color: utils.$white;
 
-                [data-theme="dark"] & {
+                ::ng-deep [data-theme="dark"] & {
                     color: utils.$white;
                 }
             }
@@ -184,7 +176,7 @@
                 background-color: utils.$amber;
                 color: utils.$white;
 
-                [data-theme="dark"] & {
+                ::ng-deep [data-theme="dark"] & {
                     color: utils.$white;
                 }
             }
@@ -200,7 +192,7 @@
     cursor: pointer;
     transition: color 0.3s;
 
-    [data-theme="dark"] & {
+    ::ng-deep [data-theme="dark"] & {
         color: utils.$light-gray-alt;
     }
 }

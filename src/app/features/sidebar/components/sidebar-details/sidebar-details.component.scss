@@ -4,7 +4,7 @@
     margin-top: utils.pxToRem(12px);
     color: utils.$cool-gray;
 
-    [data-theme="dark"] & {
+    ::ng-deep [data-theme="dark"] & {
         color: utils.$soft-gray;
     }
 }
@@ -57,9 +57,8 @@
     .sidebar-status-selector {
         padding: utils.pxToRem(8px);
         border-radius: utils.pxToRem(8px);
-        border: utils.pxToRem(1px) solid utils.$silver-alt;
-        background-color: utils.$white;
-        color: utils.$dim-gray;
+        border: utils.pxToRem(1px) solid inherit;
+        color: inherit;
         font-size: utils.pxToRem(16px);
         cursor: pointer;
         transition: border-color 0.3s, background-color 0.3s;
@@ -69,7 +68,7 @@
             border-color: utils.$violet;
         }
 
-        [data-theme="dark"] & {
+        ::ng-deep [data-theme="dark"] & {
             background-color: utils.$cool-gray;
             color: utils.$light-silver;
             border-color: utils.$dark-charcoal;

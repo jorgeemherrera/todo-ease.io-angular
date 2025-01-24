@@ -10,10 +10,10 @@
     }
 }
 
-[data-theme="light"] {
+::ng-deep [data-theme="light"] {
     @include theme(true);
 }
 
-[data-theme="dark"] {
+::ng-deep [data-theme="dark"] {
     @include theme(false);
 }

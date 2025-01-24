@@ -17,7 +17,7 @@
         height: utils.pxToRem(800px);
     }
 
-    [data-theme="dark"] & {
+    ::ng-deep [data-theme="dark"] & {
         background-color: utils.$charcoal !important;
     }
 
@@ -66,7 +66,7 @@
                     color: utils.$slate-gray;
                 }
 
-                [data-theme="dark"] & {
+                ::ng-deep [data-theme="dark"] & {
                     background-color: utils.$dark-charcoal;
                     border-color: utils.$cool-gray;
                     color: utils.$light-silver;
@@ -101,7 +101,7 @@
                     border-color: utils.$sky-blue;
                 }
 
-                [data-theme="dark"] & {
+                ::ng-deep [data-theme="dark"] & {
                     background-color: utils.$dark-charcoal;
                     border-color: utils.$cool-gray;
                     color: utils.$light-silver;

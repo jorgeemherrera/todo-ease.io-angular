@@ -26,7 +26,7 @@
             color: utils.$tomato;
         }
 
-        [data-theme="dark"] & {
+        ::ng-deep [data-theme="dark"] & {
             background-color: utils.$cool-gray;
             color: utils.$light-silver;
 
@@ -56,7 +56,7 @@
                     background-color: utils.$violet;
                     border-color: utils.$violet;
 
-                    [data-theme="dark"] & {
+                    ::ng-deep [data-theme="dark"] & {
                         background-color: utils.$amethyst;
                         border-color: utils.$amethyst;
                     }
@@ -71,7 +71,7 @@
                 font-size: utils.pxToRem(16px);
                 color: utils.$dark-charcoal;
 
-                [data-theme="dark"] & {
+                ::ng-deep [data-theme="dark"] & {
                     color: utils.$light-silver;
                 }
             }
@@ -81,7 +81,7 @@
             font-size: utils.pxToRem(14px);
             color: utils.$blue-gray;
 
-            [data-theme="dark"] & {
+            ::ng-deep [data-theme="dark"] & {
                 color: utils.$blue-gray-alt;
             }
         }
