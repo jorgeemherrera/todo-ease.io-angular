@@ -1,6 +1,5 @@
 @use "../../../../../styles/utils";
 
-
 .task-form-group {
     margin-bottom: utils.pxToRem(16px);
 
@@ -265,4 +264,10 @@ textarea {
 					}
 			}
 	}
+}
+
+.task-form-error {
+  color: utils.$tomato;
+  font-size: utils.pxToRem(14px);
+  margin-bottom: 0;
 }

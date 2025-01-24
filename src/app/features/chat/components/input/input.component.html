@@ -7,30 +7,3 @@
     class="chat-input"
   />
 </div>
-
-
-<!-- <div class="chat-input-container">
-  <input
-    type="text"
-    [class]="'chat-input ' + command.toLowerCase()"
-    placeholder="Escribe un comando (CREAR, EDITAR, BORRAR)"
-    (input)="handleInput($event)"
-    (keydown)="handleKeyDown($event)"
-    (focus)="handleFocus()"
-    (blur)="handleBlur()"
-  />
-  <span
-    *ngIf="command"
-    [class]="'chat-command ' + command.toLowerCase()"
-  >
-    {{ deleteConfirmation && command === 'BORRAR' ? 'Confirme BORRAR' : commandText }}
-  </span>
-  <div class="chat-help" *ngIf="helpVisible">
-    <p>Comandos disponibles:</p>
-    <ul>
-      <li><strong>CREAR</strong>: Crear una nueva tarea</li>
-      <li><strong>EDITAR</strong>: Editar una tarea existente</li>
-      <li><strong>BORRAR</strong>: Borrar una tarea (requiere confirmación)</li>
-    </ul>
-  </div>
-</div> -->
