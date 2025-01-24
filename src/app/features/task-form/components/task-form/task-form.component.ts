@@ -50,7 +50,7 @@ export class TaskFormComponent implements OnChanges {
       this.description = this.initialData.description || '';
       this.dueDate = this.initialData.dueDate || '';
       this.status = this.initialData.status || 'Open';
-      this.checklist = this.initialData.checklist || [];
+      this.checklist = JSON.parse(JSON.stringify(this.initialData.checklist || []));
     }
   }
 
@@ -59,7 +59,9 @@ export class TaskFormComponent implements OnChanges {
   }
 
   removeChecklistItem(index: number): void {
-    this.checklist.splice(index, 1);
+    if (index >= 0 && index < this.checklist.length) {
+      this.checklist.splice(index, 1); 
+    }
   }
 
   saveTask(): void {

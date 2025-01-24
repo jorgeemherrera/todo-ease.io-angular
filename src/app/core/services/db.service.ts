@@ -37,7 +37,6 @@ export class DbService {
   }
 
   private async initDB(): Promise<IDBPDatabase> {
-    console.log('Initializing IndexedDB...');
     return openDB(dbName, dbVersion, {
       upgrade(db, oldVersion) {
         if (oldVersion < 1) {

@@ -75,11 +75,11 @@
             [(ngModel)]="item.dueDate"
           />
           <button
-            class="task-form-delete-btn"
-            (click)="removeChecklistItem($count)"
-          >
-            ×
-          </button>
+          class="task-form-delete-btn"
+          (click)="removeChecklistItem(i)"
+        >
+          ×
+        </button>
         </li>
       }
     </ul>

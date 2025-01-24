@@ -1,6 +1,6 @@
 <main class="chat-container">
   @if (tasks.length) {
-    @for (task of tasks; track task) {
+    @for (task of tasks; track $index) {
       <div [class]="'message ' + task.status.toLowerCase()" (click)="onTaskSelect(task)">
 				<div class="message-header">
 					<div class="message-title-container">

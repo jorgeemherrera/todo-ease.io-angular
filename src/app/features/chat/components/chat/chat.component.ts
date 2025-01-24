@@ -38,10 +38,9 @@ export class ChatComponent {
     const filter = this.selectedFilter();
     return this.tasksSignal().filter((task) => {
       const matchesSearch = task.title.toLowerCase().includes(query);
-      const isOverdue = task.dueDate && new Date(task.dueDate).getTime() < new Date().setHours(0, 0, 0, 0);
       const matchesFilter =
         filter === 'all' ||
-        (filter === 'overdue' && isOverdue) ||
+        (filter === 'overdue'  && task.status === 'Overdue') ||
         (filter === 'completed' && task.status === 'Completed') ||
         (filter === 'in-progress' && task.status === 'In Progress') ||
         (filter === 'open' && task.status === 'Open');

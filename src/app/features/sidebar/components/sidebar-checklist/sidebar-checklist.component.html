@@ -1,7 +1,7 @@
-<section>
+@if (checklist.length > 0) {
   <h4 class="sidebar-checklist-title">Checklist:</h4>
   <ul class="sidebar-checklist">
-    @for (item of checklist; track item) {
+    @for (item of checklist; track $index) {
       <li [class.overdue]="isOverdue(item.dueDate) && !item.checked">
         <label class="custom-checkbox">
           <input
@@ -15,4 +15,4 @@
       </li>
     }
   </ul>
-</section>
+}
