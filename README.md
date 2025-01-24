@@ -1,27 +1,82 @@
-# TodoEaseIoAngular
+# EASE.IO TECHNICAL TEST
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
+This is a React application that integrates SASS and TypeScript to create a dynamic to-do list. The app allows users to create tasks with proper classification, such as Pending, In Progress, Open, and Completed. Tasks can also include a checklist with an expiration date. Users can filter tasks by their classification for better organization. The application features a modern UI with a toggle for dark and light modes, ensuring a seamless user experience. Additionally, all data is stored locally using IndexedDB, ensuring persistence even when the app is refreshed or accessed offline.
 
-## Development server
+## Table of Contents
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+  - [Running the App](#running-the-app)
+- [Usage](#usage)
+- [Customization](#customization)
+- [Contributing](#contributing)
+- [License](#license)
 
-## Code scaffolding
+## Getting Started
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+### Prerequisites
 
-## Build
+Make sure you have Node.js (upper than v18) and npm installed on your machine.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+- Node.js: [https://nodejs.org/](https://nodejs.org/)
+- npm: [https://www.npmjs.com/](https://www.npmjs.com/)
 
-## Running unit tests
+### Installation
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+1. Clone the repository:
 
-## Running end-to-end tests
+   ```bash
+   git clone https://github.com/jorgeemherrera/todo-ease.io-angular
+   ```
+2. Navigate to the project directory:
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+   ```bash
+   cd todo-Ease.io-angular
+   ```
 
-## Further help
+3. Install dependencies:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+   check the version of node with node -v or nvm list 
+
+   ```bash
+   nvm use 18 -> use minimum Node.js v18.x.x version
+   ```
+
+   Next install dependencies
+
+   ```bash
+   npm install
+   ```
+### Running the App
+
+Run the app in development mode:
+
+   ```bash
+   ng s
+   Open [http://localhost:4200] on your browser to view the app.
+   ```
+
+### Usage
+
+- You can search for tasks by title.
+- You can filter tasks by different statuses: Open, Completed, Expired, In Progress.
+- In the navbar, you can switch between Light/Dark themes.
+- You can create tasks with a title, description, checklist, and due date.
+- You can update task statuses from the sidebar.
+- You can use commands in the input, such as: DELETE, EDIT, CREATE.
+- You can create a task by simply entering the task title.
+
+on your browser to view the app: [jorgeemherrera.github.io/todo-Ease.io-angular](https://github.com/jorgeemherrera/todo-ease.io-angular).
+
+### Customization
+
+Feel free to customize the app to suit your needs. You can modify the available items, change, and styles based on your preferences.
+
+### Contributing
+
+Contributions are welcome! If you find any issues or have suggestions for improvement, please open an issue or create a pull request.
+
+### License
+
+This project is licensed under the MIT License.
