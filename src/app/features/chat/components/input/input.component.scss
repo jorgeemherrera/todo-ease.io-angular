@@ -1,0 +1,123 @@
+@use "../../../../../styles/utils";
+
+.chat-input-container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  border-top: utils.pxToRem(1px) solid utils.$silver-alt;
+
+  [data-theme="dark"] & {
+      border-top: utils.pxToRem(1px) solid utils.$dark-charcoal;
+  }
+
+  .chat-input {
+      width: 100%;
+      padding: utils.pxToRem(12px);
+      border: none;
+      height: utils.pxToRem(60px);
+      font-size: utils.pxToRem(16px);
+      border-bottom-right-radius: utils.pxToRem(12px);
+
+      &::placeholder {
+          color: utils.$slate-gray;
+      }
+
+      [data-theme="dark"] & {
+          background-color: utils.$dark-charcoal;
+          color: utils.$light-silver;
+
+          &::placeholder {
+              color: utils.$blue-gray-alt;
+          }
+      }
+
+      &.crear {
+          border-color: utils.$success-green;
+      }
+
+      &.editar {
+          border-color: utils.$amber;
+      }
+
+      &.borrar {
+          border-color: utils.$crimson;
+      }
+  }
+
+  .chat-command {
+      position: absolute;
+      left: utils.pxToRem(10px);
+      top: 50%;
+      border-radius: utils.pxToRem(8px);
+      transform: translateY(-50%);
+      padding: utils.pxToRem(4px) utils.pxToRem(8px);
+      font-weight: bold;
+      font-size: utils.pxToRem(14px);
+      color: utils.$white;
+
+      &.crear {
+          background-color: utils.$success-green;
+      }
+
+      &.editar {
+          background-color: utils.$amber;
+      }
+
+      &.borrar {
+          background-color: utils.$crimson;
+      }
+  }
+}
+
+.chat-command.borrar {
+  background-color: utils.$crimson;
+}
+
+.chat-command.borrar::before {
+  content: "Confirme: ";
+  font-weight: normal;
+}
+
+.chat-help {
+  position: absolute;
+  bottom: calc(100% + utils.pxToRem(8px));
+  left: 0;
+  width: 100%;
+  background: utils.$white;
+  border: utils.pxToRem(1px) solid utils.$silver-alt;
+  border-radius: utils.pxToRem(8px);
+  padding: utils.pxToRem(12px);
+  font-size: utils.pxToRem(14px);
+  color: utils.$dim-gray;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+
+  p {
+      font-weight: bold;
+      margin-bottom: utils.pxToRem(8px);
+  }
+
+  ul {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+
+      li {
+          margin-bottom: utils.pxToRem(4px);
+          font-weight: normal;
+
+          strong {
+              color: utils.$sky-blue;
+          }
+      }
+  }
+
+  [data-theme="dark"] & {
+      background: utils.$dark-charcoal;
+      color: utils.$light-silver;
+      border-color: utils.$cool-gray;
+
+      strong {
+          color: utils.$light-blue;
+      }
+  }
+}

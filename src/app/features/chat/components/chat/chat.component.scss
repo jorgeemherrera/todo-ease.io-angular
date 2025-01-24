@@ -5,14 +5,14 @@
     flex-direction: column;
     gap: utils.pxToRem(16px);
     padding-top: utils.pxToRem(16px);
-		background-color: utils.$alabaster;
+    background-color: utils.$alabaster;
     border-bottom-right-radius: utils.pxToRem(12px);
-    width: utils.pxToRem(800px);
     max-height: 80%;
+    width: utils.pxToRem(580px);
     position: relative;
+    height: 100%;
 
-
-    @include utils.media-ltlg(){
+    @include utils.media-ltlg() {
         width: 100%;
     }
 
@@ -107,5 +107,9 @@
                 }
             }
         }
+    }
+
+    app-task-list{
+        overflow-y: auto;
     }
 }

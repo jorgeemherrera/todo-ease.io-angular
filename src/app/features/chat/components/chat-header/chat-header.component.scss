@@ -1,1 +1,121 @@
 @use "../../../../../styles/utils";
+
+.chat-header {
+    display: flex;
+    flex-direction: column;
+    gap: utils.pxToRem(16px);
+    margin-bottom: utils.pxToRem(16px);
+
+    .chat-title {
+        font-size: utils.pxToRem(24px);
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+    }
+
+    .chat-actions {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 1.5rem;
+        .search-bar {
+            position: relative;
+            
+            .search-icon {
+                position: absolute;
+                left: utils.pxToRem(8px);
+                top: 50%;
+                transform: translateY(-50%);
+                width: utils.pxToRem(20px);
+                color: utils.$slate-gray;
+            }
+
+            .search-input {
+                padding: utils.pxToRem(8px) utils.pxToRem(8px) utils.pxToRem(8px) utils.pxToRem(32px);
+                border: utils.pxToRem(1px) solid utils.$light-gray-alt;
+                border-radius: utils.pxToRem(8px);
+                font-size: utils.pxToRem(14px);
+
+                &:focus {
+                    outline: none;
+                    border-color: utils.$sky-blue;
+                }
+
+                [data-theme="dark"] & {
+                    background-color: utils.$dark-charcoal;
+                    border-color: utils.$cool-gray;
+                    color: utils.$light-silver;
+                }
+            }
+        }
+
+        .filter-container {
+            position: relative;
+            z-index: 100;
+
+            .filter-button {
+                background-color: transparent;
+                border: none;
+                cursor: pointer;
+
+                .filter-icon {
+                    width: utils.pxToRem(24px);
+                    height: utils.pxToRem(24px);
+                    color: utils.$slate-gray;
+                    z-index: 100;
+
+                    &:hover {
+                        color: utils.$amethyst-alt;
+                    }
+
+                    [data-theme="dark"] & {
+                        color: utils.$light-silver;
+
+                        &:hover {
+                            color: utils.$amethyst-alt;
+                        }
+                    }
+                }
+            }
+
+            .filter-menu {
+                position: absolute;
+                top: utils.pxToRem(32px);
+                right: 0;
+                background-color: utils.$white;
+                border: utils.pxToRem(1px) solid utils.$light-gray-alt;
+                border-radius: utils.pxToRem(8px);
+                padding: utils.pxToRem(8px);
+                box-shadow: 0 utils.pxToRem(4px) utils.pxToRem(12px) rgba(0, 0, 0, 0.1);
+
+                [data-theme="dark"] & {
+                    background-color: utils.$dark-charcoal;
+                    border-color: utils.$cool-gray;
+                    color: utils.$white;
+                }
+
+                button {
+                    display: block;
+                    width: 100%;
+                    background-color: transparent;
+                    border: none;
+                    padding: utils.pxToRem(8px);
+                    text-align: left;
+                    cursor: pointer;
+                    font-size: utils.pxToRem(14px);
+                    color: inherit;
+
+                    &:hover {
+                        background-color: utils.$amethyst-alt;
+                        border-radius: 8px;
+                        color: utils.$white;
+
+                        [data-theme="dark"] & {
+                            background-color: utils.$amethyst-alt;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
