@@ -7,7 +7,7 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   standalone: true,
 })
 export class SidebarChecklistComponent {
-  @Input() checklist: any[] = [];
+  @Input() checklist: { id: string; dueDate?: string; checked: boolean }[] = [];
   @Output() checklistUpdate = new EventEmitter<{ id: string; checked: boolean }>();
 
   toggleCheckbox(itemId: string, event: Event): void {

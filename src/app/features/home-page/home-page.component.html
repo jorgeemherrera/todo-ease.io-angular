@@ -1,7 +1,13 @@
-<div class="home">
-<app-header/>
+<app-header></app-header>
 <div class="home-content">
-  <!-- <app-sidebar/> -->
-  <!-- <app-chat/> -->
+  <app-sidebar [selectedTask]="selectedTask"></app-sidebar>
+  <app-chat [tasks]="(tasks$ | async) || []" (selectTask)="onTaskSelect($event)"></app-chat>
 </div>
-</div>
+<app-modal [isOpen]="modalService.isModalOpen()" (close)="closeModal()">
+  <app-task-form
+    [initialData]="modalService.selectedTask() || { id: '', title: '', description: '', dueDate: '', status: 'Open', checklist: [] }"
+    (save)="saveTask($event)"
+    (cancel)="closeModal()"
+  ></app-task-form>
+</app-modal>
+

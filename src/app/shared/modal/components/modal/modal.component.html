@@ -1,0 +1,23 @@
+@if (isOpen) {
+  <div
+    class="modal-overlay"
+    role="dialog"
+    aria-modal="true"
+    (click)="close.emit()"
+  >
+  modal
+    <div
+      class="modal"
+      (click)="stopPropagation($event)"
+    >
+      <button
+        class="modal-close"
+        (click)="close.emit()"
+        aria-label="Close modal"
+      >
+        ×
+      </button>
+      <ng-content></ng-content>
+    </div>
+  </div>
+}

@@ -9,17 +9,3 @@ export interface Task {
 }[];
   status: "Open" | "In Progress" | "Completed" | "Overdue"; 
 }
-
-export interface TaskState {
-  tasks: Task[];
-  selectedTaskId: string | null;
-}
-
-export const initialTaskState: TaskState = {
-  tasks: [],
-  selectedTaskId: null,
-};
-
-export interface AppState {
-  tasks: TaskState; 
-}

@@ -1,0 +1,92 @@
+<div class="task-form">
+  @if (error) {
+    <div class="task-form-error">{{ error }}</div>
+  }
+
+  <div class="task-form-group">
+    <label for="task-title">Título</label>
+    <input
+      id="task-title"
+      type="text"
+      [(ngModel)]="title"
+      placeholder="Escribe el título de la tarea"
+    />
+  </div>
+
+  <div class="task-form-group">
+    <label for="task-desc">Descripción</label>
+    <textarea
+      id="task-desc"
+      [(ngModel)]="description"
+      placeholder="Describe los detalles de la tarea"
+    ></textarea>
+  </div>
+
+  <div class="task-form-group task-form-inline">
+    <div>
+      <label for="task-date">Fecha límite</label>
+      <input
+        id="task-date"
+        type="date"
+        [(ngModel)]="dueDate"
+      />
+    </div>
+    <div>
+      <label for="task-status">Estado</label>
+      <select
+        id="task-status"
+        [(ngModel)]="status"
+      >
+        <option value="Open">Abierta</option>
+        <option value="In Progress">En Progreso</option>
+        <option value="Completed">Completada</option>
+        <option value="Overdue">Vencida</option>
+      </select>
+    </div>
+  </div>
+
+  <div class="task-form-checklist">
+    <header class="task-form-checklist-header">
+      <h3>Checklist</h3>
+      <button
+        type="button"
+        (click)="addChecklistItem()"
+        class="add-btn"
+      >
+        + Añadir Ítem
+      </button>
+    </header>
+    <ul class="task-form-checklist-items">
+      @for (item of checklist; track item; let i = $count) {
+        <li
+          [class.task-form-checklist-item-overdue]="item.isOverdue"
+        >
+          <input
+            type="checkbox"
+            [(ngModel)]="item.checked"
+          />
+          <input
+            type="text"
+            [(ngModel)]="item.label"
+            placeholder="Nombre del ítem"
+          />
+          <input
+            type="date"
+            [(ngModel)]="item.dueDate"
+          />
+          <button
+            class="task-form-delete-btn"
+            (click)="removeChecklistItem($count)"
+          >
+            ×
+          </button>
+        </li>
+      }
+    </ul>
+  </div>
+
+  <footer class="task-form-actions">
+    <button (click)="cancel.emit()" class="task-form-btn cancel">Cancelar</button>
+    <button (click)="saveTask()" class="task-form-btn save">Guardar</button>
+  </footer>
+</div>

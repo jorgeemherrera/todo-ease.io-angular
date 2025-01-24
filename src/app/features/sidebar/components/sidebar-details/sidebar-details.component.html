@@ -2,7 +2,7 @@
   <p class="sidebar-description">{{ task.description }}</p>
   <p class="sidebar-due-date">
     Fecha límite: {{ task.dueDate || 'Sin fecha' }}
-    @if (task.status) {
+    @if (task.status === 'Overdue') {
       <span class="sidebar-overdue">(Vencido)</span>
     }
   </p>
@@ -12,7 +12,7 @@
     <select
       class="sidebar-status-selector"
       [(ngModel)]="task.status"
-      (change)="statusChange.emit(task.status)"
+      (change)="onStatusChange($event)"
     >
       <option value="Open">Abierto</option>
       <option value="In Progress">En Progreso</option>

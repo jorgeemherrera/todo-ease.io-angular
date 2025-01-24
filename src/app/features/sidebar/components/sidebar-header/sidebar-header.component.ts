@@ -1,4 +1,5 @@
 import { Component, Input } from '@angular/core';
+import { Task } from '../../../tasks/task.state';
 
 @Component({
   selector: 'app-sidebar-header',
@@ -7,5 +8,6 @@ import { Component, Input } from '@angular/core';
   standalone: true,
 })
 export class SidebarHeaderComponent {
-  @Input() task: any;
+  @Input() task!: Task;
+
 }

@@ -1,8 +1,6 @@
 import { Inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { DbService } from '../../shared/services/db.service';
-
-
+import { DbService } from './db.service';
 export type Theme = 'light' | 'dark';
 
 @Injectable({

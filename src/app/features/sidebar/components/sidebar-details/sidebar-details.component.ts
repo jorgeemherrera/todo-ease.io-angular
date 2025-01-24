@@ -6,12 +6,21 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './sidebar-details.component.html',
   styleUrls: ['./sidebar-details.component.scss'],
   standalone: true,
-  imports: [
-
-    FormsModule
-  ],
+  imports: [FormsModule],
 })
 export class SidebarDetailsComponent {
-  @Input() task: any;
-  @Output() statusChange = new EventEmitter<string>();
+  @Input() task!: {
+    status: 'Open' | 'In Progress' | 'Completed' | 'Overdue';
+    description?: string;
+    dueDate?: string;
+  };
+  @Output() statusChange = new EventEmitter<'Open' | 'In Progress' | 'Completed' | 'Overdue'>();
+
+  onStatusChange(event: Event): void {
+    const selectElement = event.target as HTMLSelectElement;
+    const newStatus = selectElement.value as 'Open' | 'In Progress' | 'Completed' | 'Overdue';
+    if (['Open', 'In Progress', 'Completed', 'Overdue'].includes(newStatus)) {
+      this.statusChange.emit(newStatus);
+    }
+  }
 }

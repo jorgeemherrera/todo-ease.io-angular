@@ -1,0 +1,25 @@
+<header class="chat-header">
+  <h1 class="chat-title">Lista de Tareas</h1>
+  <div class="chat-actions">
+    <div class="search-bar">
+      <input
+        type="text"
+        placeholder="Buscar tareas..."
+        [value]="searchQuery"
+        (input)="onSearchQueryChange($event)"
+      />
+    </div>
+    <div class="filter-container">
+      <button (click)="toggleFilter()">Filtrar</button>
+      @if (filterOpen()) {  
+        <div class="filter-menu">
+          @for (filter of filters; track filter) {
+            <button (click)="selectFilter(filter.value)">
+              {{ filter.label }}
+            </button>
+          }
+        </div>
+      }
+    </div>
+  </div>
+</header>

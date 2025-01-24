@@ -1,1 +1,22 @@
-<div class="chat">f</div>
+<div class="chat">
+  <app-chat-header
+    [searchQuery]="searchQuery()"
+    (searchQueryChange)="onSearchQueryChange($event)"
+    [selectedFilter]="selectedFilter()"
+    (selectedFilterChange)="onSelectedFilterChange($event)"
+  ></app-chat-header>
+
+  <app-task-list
+    [tasks]="filteredTasks()"
+    (edit)="onEdit($event)"
+    (delete)="onDelete($event)"
+    (selectTask)="onTaskSelect($event)"
+  ></app-task-list>
+
+  <app-input
+    [command]="command()"
+    [commandText]="commandText()"
+    (commandChange)="onCommandChange($event)"
+    (commandExecute)="onCommandExecute($event)"
+  ></app-input>
+</div>

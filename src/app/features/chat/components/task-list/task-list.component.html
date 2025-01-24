@@ -1,0 +1,14 @@
+<main class="chat-container">
+  @if (tasks.length) {
+    @for (task of tasks; track task) {
+      <div class="task" (click)="onTaskSelect(task)">
+        <h3>{{ task.title }}</h3>
+        <p>{{ task.description }}</p>
+        <button (click)="edit.emit(task.id)">Editar</button>
+        <button (click)="delete.emit(task.id)">Borrar</button>
+      </div>
+    }
+  } @else {
+    <p>No hay tareas que coincidan con la búsqueda.</p>
+  }
+</main>
