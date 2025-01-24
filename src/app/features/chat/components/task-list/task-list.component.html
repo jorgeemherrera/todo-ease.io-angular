@@ -5,7 +5,7 @@
         <h3>{{ task.title }}</h3>
         <p>{{ task.description }}</p>
         <button (click)="edit.emit(task.id)">Editar</button>
-        <button (click)="delete.emit(task.id)">Borrar</button>
+        <button (click)="onDeleteTask(task.id)">Borrar</button>
       </div>
     }
   } @else {

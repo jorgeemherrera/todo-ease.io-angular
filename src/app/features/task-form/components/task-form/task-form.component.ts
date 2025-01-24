@@ -1,5 +1,5 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormsModule } from '@angular/forms'; // Importar FormsModule para ngModel
+import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 interface ChecklistItem {
   id: string;
@@ -25,7 +25,7 @@ interface Task {
   standalone: true,
   imports: [FormsModule],
 })
-export class TaskFormComponent {
+export class TaskFormComponent implements OnChanges {
   @Input() initialData: any = {
     id: '',
     title: '',
@@ -44,8 +44,8 @@ export class TaskFormComponent {
   checklist: ChecklistItem[] = [];
   error: string = '';
 
-  ngOnInit(): void {
-    if (this.initialData) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['initialData'] && this.initialData) {
       this.title = this.initialData.title || '';
       this.description = this.initialData.description || '';
       this.dueDate = this.initialData.dueDate || '';
@@ -53,7 +53,6 @@ export class TaskFormComponent {
       this.checklist = this.initialData.checklist || [];
     }
   }
-  
 
   addChecklistItem(): void {
     this.checklist.push({ id: Date.now().toString(), label: '', checked: false, dueDate: '' });
@@ -82,5 +81,4 @@ export class TaskFormComponent {
     };
     this.save.emit(updatedTask);
   }
-  
 }

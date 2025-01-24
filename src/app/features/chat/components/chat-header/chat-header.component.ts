@@ -7,10 +7,10 @@ import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
   standalone: true,
 })
 export class ChatHeaderComponent {
-  @Input() searchQuery = ''; // Define el valor inicial como string vacío
+  @Input() searchQuery = '';
   @Output() searchQueryChange = new EventEmitter<string>();
 
-  @Input() selectedFilter = ''; // Filtro seleccionado
+  @Input() selectedFilter = '';
   @Output() selectedFilterChange = new EventEmitter<string>();
 
   filters = [

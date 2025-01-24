@@ -1,7 +1,7 @@
 <app-header></app-header>
 <div class="home-content">
   <app-sidebar [selectedTask]="selectedTask"></app-sidebar>
-  <app-chat [tasks]="(tasks$ | async) || []" (selectTask)="onTaskSelect($event)"></app-chat>
+  <app-chat [tasks]="(tasks$ | async) || []" (selectTask)="onTaskSelect($event)" (delete)="onDeleteTask($event)"></app-chat>
 </div>
 <app-modal [isOpen]="modalService.isModalOpen()" (close)="closeModal()">
   <app-task-form

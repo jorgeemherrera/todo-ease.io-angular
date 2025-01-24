@@ -5,22 +5,21 @@ import { Task } from './task.service';
   providedIn: 'root',
 })
 export class ModalService {
-  isModalOpen: WritableSignal<boolean> = signal(false);
-  selectedTask: WritableSignal<Task | null> = signal(null);
+  readonly isModalOpen: WritableSignal<boolean> = signal(false);
+  readonly selectedTask: WritableSignal<Task | null> = signal(null);
 
   openModal(task: Task | null = null): void {
-    this.selectedTask.set(task);  // Establece la tarea seleccionada para editar
-    this.isModalOpen.set(true);   // Abre el modal
+    this.selectedTask.set(task);
+    this.isModalOpen.set(true);
   }
   
-
   closeModal(): void {
-    this.isModalOpen.set(false); // Cierra el modal
-    this.selectedTask.set(null); // Limpia la tarea seleccionada
+    this.isModalOpen.set(false);
+    this.selectedTask.set(null);
   }
 
   isEditing(): boolean {
-    return !!this.selectedTask();  // Verifica si hay una tarea seleccionada para editar
+    return !!this.selectedTask();
   }
 
 }
