@@ -53,7 +53,7 @@ Make sure you have Node.js (upper than v18) and npm installed on your machine.
 Run the app in development mode:
 
    ```bash
-   ng s
+   ng serve -o
    Open [http://localhost:4200] on your browser to view the app.
    ```
 
