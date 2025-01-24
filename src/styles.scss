@@ -9,7 +9,7 @@ body {
   box-sizing: border-box;
   font-family: 'Rubik', 'sans-serif';
   [data-theme="dark"] &{
-      background-color: #262c39;
+      background-color: #262c39 !important;
   }
 
   @media (min-width: 1024px){

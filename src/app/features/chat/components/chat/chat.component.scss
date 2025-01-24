@@ -5,7 +5,7 @@
     flex-direction: column;
     gap: utils.pxToRem(16px);
     padding-top: utils.pxToRem(16px);
-    background-color: utils.$alabaster;
+		background-color: utils.$alabaster;
     border-bottom-right-radius: utils.pxToRem(12px);
     width: utils.pxToRem(800px);
     max-height: 80%;
@@ -17,7 +17,7 @@
     }
 
     [data-theme="dark"] & {
-        background-color: utils.$charcoal;
+        background-color: utils.$charcoal !important;
     }
 
     &-header {

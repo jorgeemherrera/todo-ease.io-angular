@@ -1,0 +1,241 @@
+@use "../../../../../styles/utils";
+
+.chat-input-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    border-top: utils.pxToRem(1px) solid utils.$silver-alt;
+
+    [data-theme="dark"] & {
+        border-top: utils.pxToRem(1px) solid utils.$dark-gray !important;
+    }
+
+    .chat-input {
+        width: 100%;
+        padding: utils.pxToRem(12px);
+        border: none;
+        height: utils.pxToRem(60px);
+        font-size: utils.pxToRem(16px);
+        border-bottom-right-radius: utils.pxToRem(12px);
+
+        [data-theme="dark"] & {
+            background-color: utils.$dark-gray ;
+        }
+
+        &.crear {
+            border-color: utils.$success-green;
+        }
+
+        &.editar {
+            border-color: utils.$amber;
+        }
+
+        &.borrar {
+            border-color: utils.$crimson;
+        }
+    }
+
+    .chat-command {
+        position: absolute;
+        right: utils.pxToRem(16px);
+        top: 50%;
+        transform: translateY(-50%);
+        padding: utils.pxToRem(4px) utils.pxToRem(8px);
+        font-weight: bold;
+        font-size: utils.pxToRem(14px);
+        color: utils.$white;
+
+        &.crear {
+            background-color: utils.$success-green;
+        }
+
+        &.editar {
+            background-color: utils.$amber;
+        }
+
+        &.borrar {
+            background-color: utils.$crimson;
+        }
+    }
+}
+
+.message {
+    background-color: utils.$white;
+    border-radius: 12px;
+    margin: 0 utils.pxToRem(16px);
+    padding: utils.pxToRem(20px);
+    transition: transform 0.2s, box-shadow 0.2s, border-left 0.2s;
+
+    [data-theme="dark"] & {
+        background-color: utils.$pewter;
+    }
+
+    cursor: pointer;
+
+    &:hover {
+        transform: translateY(-3px);
+    }
+
+    &.message-selected {
+        border-left: utils.pxToRem(4px) solid utils.$sky-blue;
+    }
+
+    &.message-warning {
+        background-color: utils.$cornsilk;
+        border-left: utils.pxToRem(4px) solid utils.$amber;
+
+        [data-theme="dark"] & {
+            color: utils.$jet-black;
+        }
+    }
+
+    &.message-overdue {
+        background-color: utils.$blush;
+        border-left: utils.pxToRem(4px) solid utils.$crimson;
+
+        [data-theme="dark"] & {
+            color: utils.$jet-black;
+        }
+    }
+
+    &:not(.message-warning):not(.message-overdue) {
+        border-left: utils.pxToRem(4px) solid utils.$charcoal;
+        background-color: utils.$whisper;
+
+        [data-theme="dark"] & {
+            border-left: utils.pxToRem(4px) solid utils.$amethyst-alt;
+            background-color: utils.$dark-charcoal;
+            color: utils.$white;
+        }
+    }
+
+    .message-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: utils.pxToRem(12px);
+
+        .message-title-container {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .message-title {
+            font-weight: bold;
+            color: utils.$dim-gray;
+            margin: 0;
+
+            [data-theme="dark"] & {
+                color: inherit;
+            }
+        }
+
+        .message-time {
+            font-size: utils.pxToRem(14px);
+            color: utils.$gray;
+
+            [data-theme="dark"] & {
+                color: inherit;
+            }
+        }
+    }
+
+    .message-content {
+        p {
+            margin: utils.pxToRem(4px) 0;
+            font-size: utils.pxToRem(16px);
+            color: utils.$dim-gray;
+
+            [data-theme="dark"] & {
+                color: inherit;
+            }
+        }
+
+        .message-due-date {
+            font-size: utils.pxToRem(14px);
+            color: utils.$medium-gray;
+
+            [data-theme="dark"] & {
+                color: inherit;
+            }
+        }
+
+        .message-status {
+            display: inline-block;
+            padding: utils.pxToRem(4px) utils.pxToRem(8px);
+            border-radius: utils.pxToRem(8px);
+            font-size: utils.pxToRem(14px);
+            font-weight: bold;
+
+            &.overdue {
+                background-color: utils.$crimson;
+                color: utils.$white;
+
+                [data-theme="dark"] & {
+                    color: utils.$white;
+                }
+            }
+
+            &.warning {
+                background-color: utils.$amber;
+                color: utils.$white;
+
+                [data-theme="dark"] & {
+                    color: utils.$white;
+                }
+            }
+        }
+    }
+}
+
+.icon {
+    width: utils.pxToRem(24px);
+    height: utils.pxToRem(24px);
+    margin-left: utils.pxToRem(8px);
+    color: utils.$pewter;
+    cursor: pointer;
+    transition: color 0.3s;
+
+    [data-theme="dark"] & {
+        color: utils.$light-gray-alt;
+    }
+}
+
+.edit-icon, .delete-icon {
+    color: utils.$light-gray-alt;
+    background-color: utils.$amethyst-alt;
+    border-radius: 5px;
+    padding: 2px;
+}
+
+.message-status-tag {
+    display: inline-block;
+    padding: utils.pxToRem(4px) utils.pxToRem(8px);
+    border-radius: utils.pxToRem(8px);
+    font-size: utils.pxToRem(12px);
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-left: utils.pxToRem(8px);
+    text-transform: capitalize;
+
+    &.open {
+        background-color: utils.$slate-gray;
+        color: utils.$white;
+    }
+
+    &.in-progress {
+        background-color: utils.$sky-blue;
+        color: utils.$white;
+    }
+
+    &.completed {
+        background-color: utils.$success-green;
+        color: utils.$white;
+        text-decoration: line-through;
+    }
+
+    &.overdue {
+        background-color: utils.$crimson;
+        color: utils.$white;
+    }
+}
