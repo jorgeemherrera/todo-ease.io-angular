@@ -4,7 +4,7 @@
     margin-top: utils.pxToRem(16px);
     list-style: none;
     padding: 0;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 250px;
 
     @include utils.media-lg() {

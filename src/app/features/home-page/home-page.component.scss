@@ -34,4 +34,15 @@
     &-header {
         background-color: utils.$white;
     }
+
+    app-sidebar{
+        width: 64%;
+        @include utils.media-ltlg(){
+            width: 100%;
+        }
+    }
+
+    app-chat{
+        width: 100%;
+    }
 }
