@@ -14,6 +14,7 @@
 
     @include utils.media-ltlg() {
         width: 100%;
+        height: utils.pxToRem(800px);
     }
 
     [data-theme="dark"] & {

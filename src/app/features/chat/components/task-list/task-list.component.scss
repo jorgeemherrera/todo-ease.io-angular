@@ -65,11 +65,18 @@
 }
 
 .message {
-    background-color: utils.$white;
     border-radius: 12px;
     margin: 0 utils.pxToRem(16px);
     padding: utils.pxToRem(20px);
     transition: transform 0.2s, box-shadow 0.2s, border-left 0.2s;
+    border-left: utils.pxToRem(4px) solid utils.$charcoal;
+    background-color: utils.$whisper;
+
+    [data-theme="dark"] & {
+        border-left: utils.pxToRem(4px) solid utils.$amethyst-alt;
+        background-color: utils.$dark-charcoal;
+        color: utils.$white;
+    }
 
     [data-theme="dark"] & {
         background-color: utils.$pewter;
@@ -81,11 +88,11 @@
         transform: translateY(-3px);
     }
 
-    &.message-selected {
+    &.-selected {
         border-left: utils.pxToRem(4px) solid utils.$sky-blue;
     }
 
-    &.message-warning {
+    .message.-warning {
         background-color: utils.$cornsilk;
         border-left: utils.pxToRem(4px) solid utils.$amber;
 
@@ -94,7 +101,7 @@
         }
     }
 
-    &.message-overdue {
+    &.message.overdue {
         background-color: utils.$blush;
         border-left: utils.pxToRem(4px) solid utils.$crimson;
 
@@ -103,16 +110,6 @@
         }
     }
 
-    &:not(.message-warning):not(.message-overdue) {
-        border-left: utils.pxToRem(4px) solid utils.$charcoal;
-        background-color: utils.$whisper;
-
-        [data-theme="dark"] & {
-            border-left: utils.pxToRem(4px) solid utils.$amethyst-alt;
-            background-color: utils.$dark-charcoal;
-            color: utils.$white;
-        }
-    }
 
     .message-header {
         display: flex;
@@ -129,6 +126,7 @@
             font-weight: bold;
             color: utils.$dim-gray;
             margin: 0;
+            font-size: utils.pxToRem(20px);
 
             [data-theme="dark"] & {
                 color: inherit;
@@ -138,7 +136,7 @@
         .message-time {
             font-size: utils.pxToRem(14px);
             color: utils.$gray;
-
+            margin: 0;
             [data-theme="dark"] & {
                 color: inherit;
             }

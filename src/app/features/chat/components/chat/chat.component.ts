@@ -19,14 +19,11 @@ export class ChatComponent {
   @Input() tasks: Task[] = []; 
   @Output() selectTask = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
-
   searchQuery = signal<string>('');
   selectedFilter = signal<string>('all');
   command = signal<string>('');
   commandText = signal<string>('');
-  
   tasksSignal = signal<Task[]>([]);
-
   readonly #modalService = inject(ModalService);
   readonly #dbService = inject(DbService);
 

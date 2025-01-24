@@ -34,9 +34,7 @@ export class HomePageComponent {
 
   onTaskSelect(task: any): void {
     this.selectedTask = task;
-    console.log("Selected Task in Home:", task);
   }
-
 
   constructor() {
     this.dbService.tasks$.subscribe(tasks => {
