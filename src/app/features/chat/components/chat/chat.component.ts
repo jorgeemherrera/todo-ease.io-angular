@@ -18,6 +18,7 @@ export class ChatComponent {
   
   @Input() tasks: Task[] = []; 
   @Output() selectTask = new EventEmitter<any>();
+  @Output() delete = new EventEmitter<any>();
 
   searchQuery = signal<string>('');
   selectedFilter = signal<string>('all');
@@ -99,6 +100,8 @@ export class ChatComponent {
 
   onDelete(taskId: string): void {
     this.#dbService.deleteTask(taskId);
+    this.tasksSignal.set(this.tasksSignal().filter(task => task.id !== taskId));
+    this.selectTask.emit(null);
   }
 
   onSelect(taskId: string): void {

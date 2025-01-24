@@ -15,6 +15,7 @@ export interface Task {
   createdAt: string;
   checklist: {
     id: string;
+    label: string;
     dueDate?: string;
     checked: boolean;
   }[];
@@ -61,14 +62,13 @@ export class DbService {
   async saveTask(task: Task): Promise<void> {
     try {
       const db = await this.dbPromise;
-      await db.put(tasksStoreName, task);  // Guarda la tarea
-      const tasks = await this.getTasks();  // Obtiene las tareas actualizadas
-      this.tasksSubject.next(tasks);  // Actualiza el estado
+      await db.put(tasksStoreName, task);
+      const tasks = await this.getTasks();
+      this.tasksSubject.next(tasks);
     } catch (error) {
       console.error('Error saving task:', error);
     }
   }
-  
 
   async getTasks(): Promise<Task[]> {
     try {

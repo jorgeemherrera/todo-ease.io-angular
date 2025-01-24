@@ -22,7 +22,7 @@ export class HomePageComponent {
   modalService = inject(ModalService);
   dbService = inject(DbService);
   tasks$: Observable<Task[]> = this.taskService.tasks$;
-  selectedTask: Task | null = null;
+  selectedTask: any = null;
   openModal(taskId: string | null): void {
     const taskToEdit = this.taskService.getTaskById(taskId);
     this.modalService.openModal(taskToEdit);
@@ -35,6 +35,29 @@ export class HomePageComponent {
   onTaskSelect(task: any): void {
     this.selectedTask = task;
     console.log("Selected Task in Home:", task);
+  }
+
+
+  constructor() {
+    this.dbService.tasks$.subscribe(tasks => {
+      if (tasks.length > 0) {
+        this.selectedTask = tasks[0];
+      } else {
+        this.selectedTask = null;
+      }
+    });
+  }
+
+  onDeleteTask(taskId: string): void {
+    this.dbService.deleteTask(taskId);
+
+    this.dbService.tasks$.subscribe(tasks => {
+      if (tasks.length > 0) {
+        this.selectedTask = tasks[0];
+      } else {
+        this.selectedTask = null;
+      }
+    });
   }
 
   saveTask(task: any): void {

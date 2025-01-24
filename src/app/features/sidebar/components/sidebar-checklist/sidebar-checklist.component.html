@@ -9,6 +9,7 @@
             [checked]="item.checked"
             (change)="toggleCheckbox(item.id, $event)"
           />
+          <span>{{item.label}}</span>
           <span class="custom-checkbox-label">{{ item.dueDate || 'Sin fecha' }}</span>
         </label>
       </li>
