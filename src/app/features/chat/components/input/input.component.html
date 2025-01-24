@@ -1,9 +1,42 @@
 <div class="chat-input-container">
   <input
     type="text"
+    class="chat-input"
     placeholder="Escribe un comando (CREAR, EDITAR, BORRAR)"
+    [class]="inputClass()"
     (input)="onInputChange($event)"
     (keydown.enter)="onEnterPress($event)"
-    class="chat-input"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    [value]="inputValue()"
   />
+  @if (command) {
+    <span 
+    class="chat-command"
+    [ngClass]="{
+      'crear': command === 'CREAR',
+      'editar': command === 'EDITAR',
+      'borrar': command === 'BORRAR'
+    }">
+      @if (deleteConfirmation() && command === 'BORRAR') {
+        <span>
+          Confirme BORRAR
+        </span>
+      } @else {
+        <span>
+          {{ command + ' ' + commandText }}
+        </span>
+      }
+    </span>
+  }
+  @if (helpVisible()) {
+    <div class="chat-help" >
+      <p>Comandos disponibles:</p>
+      <ul>
+        <li><strong>CREAR</strong>: Crear una nueva tarea</li>
+        <li><strong>EDITAR</strong>: Editar una tarea existente</li>
+        <li><strong>BORRAR</strong>: Borrar una tarea (requiere confirmación)</li>
+      </ul>
+    </div>
+  }
 </div>
