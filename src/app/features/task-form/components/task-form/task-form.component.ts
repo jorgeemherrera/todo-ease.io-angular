@@ -6,7 +6,7 @@ interface ChecklistItem {
   id: string;
   label: string;
   checked: boolean;
-  dueDate: string;
+  dueDate?: string;
   isOverdue?: boolean;
 }
 
@@ -14,7 +14,7 @@ interface Task {
   id: string;
   title: string;
   description: string;
-  dueDate: string;
+  dueDate: string | undefined;
   status: 'Open' | 'In Progress' | 'Completed' | 'Overdue';
   checklist: ChecklistItem[];
   createdAt: string;
@@ -51,11 +51,15 @@ export class TaskFormComponent implements OnChanges {
     if (changes['initialData'] && this.initialData) {
       this.title = this.initialData.title || '';
       this.description = this.initialData.description || '';
-      this.dueDate = this.initialData.dueDate || '';
+      this.dueDate = this.initialData.dueDate || '';  // Asegura que nunca sea undefined
       this.status = this.initialData.status || 'Open';
-      this.checklist = JSON.parse(JSON.stringify(this.initialData.checklist || []));
+      this.checklist = this.initialData.checklist.map(item => ({
+        ...item,
+        dueDate: item.dueDate || '',  // Asegura que dueDate no sea undefined
+      })) || [];
     }
   }
+  
 
   addChecklistItem(): void {
     this.checklist.push({ id: Date.now().toString(), label: '', checked: false, dueDate: '' });
@@ -81,8 +85,6 @@ export class TaskFormComponent implements OnChanges {
     }
   }
   
-  
-
   saveTask(): void {
     if (!this.title.trim() || !this.description.trim()) {
       this.error = 'Los campos de título y descripción son obligatorios.';
@@ -101,6 +103,7 @@ export class TaskFormComponent implements OnChanges {
       checklist: this.checklist,
       createdAt: ''
     };
+  
     this.save.emit(updatedTask);
   }
 }

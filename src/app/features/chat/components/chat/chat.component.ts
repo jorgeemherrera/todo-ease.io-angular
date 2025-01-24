@@ -68,7 +68,15 @@ export class ChatComponent {
 
   onCommandExecute({ action, title }: { action: string; title: string }): void {
     if (action === 'CREAR') {
-      this.#modalService.openModal();
+      this.#modalService.openModal({
+        title: title,
+        status: 'Open',
+        description: '',
+        checklist: [],
+        dueDate: '',
+        id: '',
+        createdAt: ''
+      });
     } else if (action === 'EDITAR') {
       const taskToEdit = this.tasksSignal().find((task) => task.title === title);
       if (taskToEdit) {

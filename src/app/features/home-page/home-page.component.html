@@ -6,9 +6,9 @@
 </div>
 <app-modal [isOpen]="modalService.isModalOpen()" (close)="closeModal()">
   <app-task-form
-    [initialData]="modalService.selectedTask() || { id: '', title: '', description: '', dueDate: '', status: 'Open', checklist: [] }"
-    (save)="saveTask($event)"
-    (cancel)="closeModal()"
-  />
+  [initialData]="modalService.selectedTask() || { id: '', title: '', description: '', dueDate: '', status: 'Open', checklist: [], createdAt: '' }"
+  (save)="saveTask($event)"
+  (cancel)="closeModal()"
+/>
 </app-modal>
 </div>

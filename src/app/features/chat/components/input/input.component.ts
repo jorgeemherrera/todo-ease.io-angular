@@ -10,30 +10,24 @@ export class InputComponent {
   @Input() command: string = '';
   @Input() commandText: string = '';
   @Output() commandChange = new EventEmitter<{ command: string; text: string }>();
-  @Output() commandExecute = new EventEmitter<{ action: string; title: string }>(); 
+  @Output() commandExecute = new EventEmitter<{ action: string; title: string }>();
 
   onInputChange(event: Event): void {
-    const inputElement = event.target as HTMLInputElement; 
+    const inputElement = event.target as HTMLInputElement;
     const value = inputElement.value.trim();
     const [action, ...args] = value.split(' ');
     const text = args.join(' ');
     this.commandChange.emit({ command: action.toUpperCase(), text });
   }
 
-  onEnterPress(event: any): void {
+  onEnterPress(event: Event): void {
     const inputElement = event.target as HTMLInputElement;
     const value = inputElement.value.trim();
     const [action, ...args] = value.split(' ');
-    const title = args.join(' ');
-  
-    if (action.toUpperCase() === 'CREAR') {
-      this.commandExecute.emit({ action: 'CREAR', title });
-    } else if (action.toUpperCase() === 'EDITAR') {
-      this.commandExecute.emit({ action: 'EDITAR', title });
-    } else if (action.toUpperCase() === 'BORRAR') {
-      this.commandExecute.emit({ action: 'BORRAR', title });
-    } else {
-      this.commandExecute.emit({ action: 'CREAR', title });
-    }
+    const title = args.join(' ').trim();
+    let actionToUse = ['CREAR', 'EDITAR', 'BORRAR'].includes(action.toUpperCase()) ? action.toUpperCase() : 'CREAR';
+    let titleToUse = title || value;
+
+    this.commandExecute.emit({ action: actionToUse, title: titleToUse });
   }
 }
