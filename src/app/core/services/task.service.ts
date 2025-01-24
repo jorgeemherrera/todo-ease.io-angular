@@ -1,43 +1,29 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-
-export interface Task {
-  id: string;
-  title: string;
-  description: string;
-  dueDate: string;
-  createdAt: string;
-  status: 'Open' | 'In Progress' | 'Completed' | 'Overdue';
-  checklist: { id: string; label: string; checked: boolean; dueDate?: string }[];
-}
-
+import { Injectable, signal } from '@angular/core';
+import { Task } from '../interfaces/Task';
 
 @Injectable({
   providedIn: 'root',
 })
 export class TaskService {
-  private tasksSubject = new BehaviorSubject<Task[]>([]);
-  tasks$: Observable<Task[]> = this.tasksSubject.asObservable();
-
-  private selectedTaskId: string | null = null;
+  readonly tasks = signal<Task[]>([]);
+  selectedTaskId: string | null = null;
 
   addTask(task: Task): void {
-    const tasks = this.tasksSubject.getValue();
-    this.tasksSubject.next([...tasks, task]);
+    this.tasks.set([...this.tasks(), task]);
   }
-  
+
   updateTask(updatedTask: Task): void {
-    const tasks = this.tasksSubject.getValue();
+    const tasks = this.tasks();
     const index = tasks.findIndex((task) => task.id === updatedTask.id);
     if (index > -1) {
       tasks[index] = updatedTask;
-      this.tasksSubject.next([...tasks]);
+      this.tasks.set([...tasks]);
     }
   }
-  
+
   deleteTask(taskId: string): void {
-    const tasks = this.tasksSubject.getValue();
-    this.tasksSubject.next(tasks.filter((task) => task.id !== taskId));
+    const tasks = this.tasks();
+    this.tasks.set(tasks.filter((task) => task.id !== taskId));
   }
 
   selectTask(taskId: string): void {
@@ -45,13 +31,12 @@ export class TaskService {
   }
 
   getSelectedTask(): Task | null {
-    const tasks = this.tasksSubject.getValue();
+    const tasks = this.tasks();
     return tasks.find((task) => task.id === this.selectedTaskId) || null;
   }
 
   getTaskById(taskId: string | null): Task | null {
-    const tasks = this.tasksSubject.getValue();
+    const tasks = this.tasks();
     return tasks.find((task) => task.id === taskId) || null;
   }
-  
 }

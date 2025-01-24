@@ -1,4 +1,4 @@
-import { Component, signal, computed, Input, inject, Output, EventEmitter } from '@angular/core';
+import { Component, signal, computed, Input, inject, Output, EventEmitter, effect } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Task } from '../../../tasks/task.state';
 import { DbService } from '../../../../core/services/db.service';
@@ -19,28 +19,32 @@ export class ChatComponent {
   @Input() tasks: Task[] = []; 
   @Output() selectTask = new EventEmitter<any>();
   @Output() delete = new EventEmitter<any>();
+  
   searchQuery = signal<string>('');
   selectedFilter = signal<string>('all');
   command = signal<string>('');
   commandText = signal<string>('');
   tasksSignal = signal<Task[]>([]);
+
   readonly #modalService = inject(ModalService);
   readonly #dbService = inject(DbService);
 
   constructor() {
-    this.#dbService.tasks$.subscribe((tasks) => {
+    effect(() => {
+      const tasks = this.#dbService.tasks();
       this.tasksSignal.set(tasks);
-    });
+    }, { allowSignalWrites: true });
   }
 
-  filteredTasks = computed(() => {
+  readonly filteredTasks = computed(() => {
     const query = this.searchQuery().toLowerCase();
     const filter = this.selectedFilter();
+    
     return this.tasksSignal().filter((task) => {
       const matchesSearch = task.title.toLowerCase().includes(query);
       const matchesFilter =
         filter === 'all' ||
-        (filter === 'overdue'  && task.status === 'Overdue') ||
+        (filter === 'overdue' && task.status === 'Overdue') ||
         (filter === 'completed' && task.status === 'Completed') ||
         (filter === 'in-progress' && task.status === 'In Progress') ||
         (filter === 'open' && task.status === 'Open');
@@ -64,7 +68,6 @@ export class ChatComponent {
     this.command.set(command);
     this.commandText.set(text);
   }
-
 
   onCommandExecute({ action, title }: { action: string; title: string }): void {
     if (action === 'CREAR') {

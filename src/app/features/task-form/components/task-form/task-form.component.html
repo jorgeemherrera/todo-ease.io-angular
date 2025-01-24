@@ -1,5 +1,5 @@
 <div class="task-form"> 
-  @if (error) {
+  @if (error(); as error) {
     <div class="task-form-error">{{ error }}</div>
   }
 
@@ -57,7 +57,7 @@
       </button>
     </header>
     <ul class="task-form-checklist-items">
-      @for (item of checklist; track item.id; let i = $index) {
+      @for (item of checklist(); track item.id; let i = $index) {
         <li [class.task-form-checklist-item-overdue]="item.isOverdue">
           <input
             type="checkbox"

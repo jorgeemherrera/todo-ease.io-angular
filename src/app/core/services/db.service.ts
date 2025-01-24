@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
 import { openDB, IDBPDatabase } from 'idb';
+import { signal } from '@angular/core';
 
 const dbName = 'tasksDB';
 const dbVersion = 2;
@@ -26,17 +26,17 @@ export interface Task {
   providedIn: 'root',
 })
 export class DbService {
-  private dbPromise: Promise<IDBPDatabase>;
-  private tasksSubject = new BehaviorSubject<Task[]>([]);
-  public tasks$: Observable<Task[]> = this.tasksSubject.asObservable();
-  private selectedTaskId: string | null = null;
+  readonly dbPromise: Promise<IDBPDatabase>;
+  readonly tasksSignal = signal<Task[]>([]);
+  readonly tasks = this.tasksSignal;
+  selectedTaskId: string | null = null;
 
   constructor() {
-    this.dbPromise = this.initDB();
+    this.dbPromise = this.#initDB();
     this.fetchTasks();
   }
 
-  private async initDB(): Promise<IDBPDatabase> {
+  async #initDB(): Promise<IDBPDatabase> {
     return openDB(dbName, dbVersion, {
       upgrade(db, oldVersion) {
         if (oldVersion < 1) {
@@ -49,12 +49,14 @@ export class DbService {
     });
   }
 
-  async fetchTasks(): Promise<void> {
+  async fetchTasks(): Promise<Task[]> {
     try {
       const tasks = await this.getTasks();
-      this.tasksSubject.next(tasks);
+      this.tasksSignal.set(tasks);
+      return tasks;
     } catch (error) {
-      console.error('Error fetching tasks:', error);
+      console.error(error);
+      return [];
     }
   }
 
@@ -63,9 +65,9 @@ export class DbService {
       const db = await this.dbPromise;
       await db.put(tasksStoreName, task);
       const tasks = await this.getTasks();
-      this.tasksSubject.next(tasks);
+      this.tasksSignal.set(tasks);
     } catch (error) {
-      console.error('Error saving task:', error);
+      console.error(error);
     }
   }
 
@@ -74,7 +76,7 @@ export class DbService {
       const db = await this.dbPromise;
       return db.getAll(tasksStoreName);
     } catch (error) {
-      console.error('Error getting tasks:', error);
+      console.error(error);
       return [];
     }
   }
@@ -84,9 +86,9 @@ export class DbService {
       const db = await this.dbPromise;
       await db.delete(tasksStoreName, id);
       const tasks = await this.getTasks();
-      this.tasksSubject.next(tasks);
+      this.tasksSignal.set(tasks);
     } catch (error) {
-      console.error('Error deleting task:', error);
+      console.error(error);
     }
   }
 
@@ -103,7 +105,7 @@ export class DbService {
       const db = await this.dbPromise;
       await db.put(settingsStoreName, { key: 'theme', value: theme });
     } catch (error) {
-      console.error('Error saving theme:', error);
+      console.error(error);
     }
   }
 
@@ -113,7 +115,7 @@ export class DbService {
       const record = await db.get(settingsStoreName, 'theme');
       return (record?.value as 'light' | 'dark') || 'light';
     } catch (error) {
-      console.error('Error getting theme:', error);
+      console.error(error);
       return 'light';
     }
   }

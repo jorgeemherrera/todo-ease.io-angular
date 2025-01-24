@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output, signal } from '@angular/core';
-
 @Component({
   selector: 'app-chat-header',
   templateUrl: './chat-header.component.html',

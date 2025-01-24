@@ -1,4 +1,5 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { ChecklistItem } from '../../../task-form/interfaces/ChecklistItem';
 
 @Component({
   selector: 'app-sidebar-checklist',
@@ -7,8 +8,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
   standalone: true,
 })
 export class SidebarChecklistComponent {
-  @Input() checklist: { id: string; dueDate?: string; checked: boolean; label: string }[] = [];
-  @Output() checklistUpdate = new EventEmitter<{ id: string; checked: boolean; label: string }>();
+  @Input() checklist: ChecklistItem[] = [];
+  @Output() checklistUpdate = new EventEmitter<ChecklistItem>();
 
   toggleCheckbox(itemId: string, event: Event): void {
     const inputElement = event.target as HTMLInputElement;

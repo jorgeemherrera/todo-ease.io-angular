@@ -1,6 +1,5 @@
 import { Injectable, WritableSignal, signal } from '@angular/core';
-import { Task } from './task.service';
-
+import { Task } from '../interfaces/Task';
 @Injectable({
   providedIn: 'root',
 })

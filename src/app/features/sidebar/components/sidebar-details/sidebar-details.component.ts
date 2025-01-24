@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Task } from '../../../tasks/task.state';
 
 @Component({
   selector: 'app-sidebar-details',
@@ -9,11 +10,7 @@ import { FormsModule } from '@angular/forms';
   imports: [FormsModule],
 })
 export class SidebarDetailsComponent {
-  @Input() task!: {
-    status: 'Open' | 'In Progress' | 'Completed' | 'Overdue';
-    description?: string;
-    dueDate?: string;
-  };
+  @Input() task!: Task;
   @Output() statusChange = new EventEmitter<'Open' | 'In Progress' | 'Completed' | 'Overdue'>();
 
   onStatusChange(event: Event): void {

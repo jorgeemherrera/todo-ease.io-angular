@@ -2,7 +2,7 @@
   @if (selectedTask; as task) {
     <app-sidebar-header [task]="task"/>
     <app-sidebar-details (statusChange)="onStatusChange($event)" [task]="task"/>
-    <app-sidebar-checklist [checklist]="task.checklist" (checklistUpdate)="onChecklistUpdate($event)"/>
+    <app-sidebar-checklist [checklist]="task.checklist!" (checklistUpdate)="onChecklistUpdate($event)"/>
   } @else {
     <p>Selecciona un ticket para ver los detalles</p>
   }

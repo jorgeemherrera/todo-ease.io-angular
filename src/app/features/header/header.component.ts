@@ -1,6 +1,5 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { ThemeService } from '../../core/services/theme.service';
-
 
 @Component({
   selector: 'app-header',
@@ -9,8 +8,10 @@ import { ThemeService } from '../../core/services/theme.service';
   standalone: true,
 })
 export class HeaderComponent {
-  readonly theme = signal<string>('');
-  constructor(private themeService: ThemeService) {
+  readonly theme = signal<string>(''); 
+  readonly themeService = inject(ThemeService);
+
+  constructor() {
     this.theme.set(this.themeService.getTheme());
   }
 

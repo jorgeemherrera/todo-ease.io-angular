@@ -1,24 +1,9 @@
-import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges, inject } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnChanges, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { DbService } from '../../../../core/services/db.service';
-
-interface ChecklistItem {
-  id: string;
-  label: string;
-  checked: boolean;
-  dueDate?: string;
-  isOverdue?: boolean;
-}
-
-interface Task {
-  id: string;
-  title: string;
-  description: string;
-  dueDate: string | undefined;
-  status: 'Open' | 'In Progress' | 'Completed' | 'Overdue';
-  checklist: ChecklistItem[];
-  createdAt: string;
-}
+import { Task } from '../../interfaces/Task';
+import { ChecklistItem } from '../../interfaces/ChecklistItem';
+import { signal, computed } from '@angular/core';
 
 @Component({
   selector: 'app-task-form',
@@ -37,73 +22,78 @@ export class TaskFormComponent implements OnChanges {
     checklist: [],
     createdAt: '',
   };
+  
   @Output() save = new EventEmitter<Task>();
   @Output() cancel = new EventEmitter<void>();
-  readonly dbService = inject(DbService)
-  title: string = '';
-  description: string = '';
-  dueDate: string = '';
-  status: 'Open' | 'In Progress' | 'Completed' | 'Overdue' = 'Open';
-  checklist: ChecklistItem[] = [];
-  error: string = '';
+  readonly title = signal('');
+  readonly description = signal('');
+  readonly dueDate = signal('');
+  readonly status = signal<'Open' | 'In Progress' | 'Completed' | 'Overdue'>('Open');
+  readonly checklist = signal<ChecklistItem[]>([]);
+  readonly error = signal<string>('');
+  readonly dbService = inject(DbService);
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['initialData'] && this.initialData) {
-      this.title = this.initialData.title || '';
-      this.description = this.initialData.description || '';
-      this.dueDate = this.initialData.dueDate || '';  // Asegura que nunca sea undefined
-      this.status = this.initialData.status || 'Open';
-      this.checklist = this.initialData.checklist.map(item => ({
-        ...item,
-        dueDate: item.dueDate || '',  // Asegura que dueDate no sea undefined
-      })) || [];
+  ngOnChanges(): void {
+    this.#initializeForm();
+  }
+
+  #initializeForm(): void {
+    if (this.initialData) {
+      this.title.set(this.initialData.title || '');
+      this.description.set(this.initialData.description || '');
+      this.dueDate.set(this.initialData.dueDate || '');
+      this.status.set(this.initialData.status || 'Open');
+      this.checklist.set(
+        this.initialData.checklist.map(item => ({
+          ...item,
+          dueDate: item.dueDate || '',
+        })) || []
+      );
     }
   }
-  
 
   addChecklistItem(): void {
-    this.checklist.push({ id: Date.now().toString(), label: '', checked: false, dueDate: '' });
+    const newItem: ChecklistItem = {
+      id: Date.now().toString(),
+      label: '',
+      checked: false,
+      dueDate: '',
+    };
+    this.checklist.update(list => [...list, newItem]);
   }
 
   removeChecklistItem(index: number): void {
-    if (index >= 0 && index < this.checklist.length) {
-      this.checklist.splice(index, 1);
-  
-      const updatedTask = {
+    if (index >= 0 && index < this.checklist().length) {
+      this.checklist.update(list => list.filter((_, i) => i !== index));
+
+      const updatedTask: Task = {
         ...this.initialData,
-        checklist: this.checklist,
+        checklist: this.checklist(),
       };
 
-      if (updatedTask.id) {
-        this.dbService.saveTask(updatedTask).then(() => {
-        }).catch((error) => {
-          console.error(error);
-        });
-      }
-  
-      this.checklist = [...this.checklist];
+      this.dbService.saveTask(updatedTask).catch(error => console.error(error));
     }
   }
-  
+
   saveTask(): void {
-    if (!this.title.trim() || !this.description.trim()) {
-      this.error = 'Los campos de título y descripción son obligatorios.';
+    if (!this.title().trim() || !this.description().trim()) {
+      this.error.set('Los campos de título y descripción son obligatorios.');
       return;
     }
-  
+
     const now = new Date().toISOString().split('T')[0];
-    const isOverdue = this.dueDate && this.dueDate < now;
-  
+    const isOverdue = this.dueDate() && this.dueDate() < now;
+
     const updatedTask: Task = {
       id: this.initialData.id || Date.now().toString(),
-      title: this.title,
-      description: this.description,
-      dueDate: this.dueDate,
-      status: isOverdue ? 'Overdue' : this.status,
-      checklist: this.checklist,
-      createdAt: ''
+      title: this.title(),
+      description: this.description(),
+      dueDate: this.dueDate(),
+      status: isOverdue ? 'Overdue' : this.status(),
+      checklist: this.checklist(),
+      createdAt: '',
     };
-  
+
     this.save.emit(updatedTask);
   }
 }
