@@ -1,115 +1,125 @@
-/* Superposición (overlay) del modal */
+@use "../../../../../styles/utils";
+
 .modal-overlay {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: rgba(0, 0, 0, 0.5); /* Fondo oscuro translúcido */
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
   display: flex;
   justify-content: center;
   align-items: center;
-  z-index: 1000; /* Asegura que el modal esté encima de otros elementos */
+  z-index: 1000;
+  animation: fadeInOverlay 0.3s ease-out;
 }
 
-/* Contenedor del modal */
 .modal {
-  background-color: #fff;
-  border-radius: 8px;
-  width: 80%;
-  max-width: 600px; /* Máximo ancho */
-  padding: 20px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra sutil */
-  overflow: hidden;
-  position: relative; /* Posicionamiento relativo para el cierre del modal */
-  z-index: 1001; /* Asegura que el contenido del modal esté encima del overlay */
-  animation: slideUp 0.3s ease-out; /* Animación para aparecer el modal */
+  background-color: utils.$white;
+  border-radius: utils.pxToRem(12px);
+  width: utils.pxToRem(344px);
+  max-height: 95vh;
+  overflow-y: auto;
+  box-shadow: 0 utils.pxToRem(8px) utils.pxToRem(24px) rgba(0, 0, 0, 0.2);
+  padding: utils.pxToRem(20px);
+  position: relative;
+  animation: modalIn 0.3s ease-out;
+
+  @include utils.media-xs() {
+    width: utils.pxToRem(344px);
+  }
+  @include utils.media-sm() {
+    width: utils.pxToRem(544px);
+  }
+  @include utils.media-md() {
+    width: utils.pxToRem(644px);
+  }
+  @include utils.media-lg() {
+    width: utils.pxToRem(644px);
+  }
+  @include utils.media-xl() {
+    width: utils.pxToRem(644px);
+  }
+
+  [data-theme="dark"] & {
+    background-color: utils.$dark-charcoal;
+    color: utils.$light-silver;
+  }
 }
 
-/* Animación de apertura del modal */
-@keyframes slideUp {
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: utils.pxToRem(1px) solid utils.$gainsboro-alt;
+  height: utils.pxToRem(40px);
+
+  .modal-title {
+    font-size: utils.pxToRem(24px);
+    font-weight: bold;
+    color: utils.$dim-gray;
+
+    [data-theme="dark"] & {
+      color: utils.$light-silver;
+    }
+  }
+}
+
+.modal-content {
+  margin-top: utils.pxToRem(20px);
+  font-size: utils.pxToRem(16px);
+  color: utils.$medium-gray;
+  line-height: 1.6;
+
+  [data-theme="dark"] & {
+    color: utils.$soft-gray;
+  }
+}
+
+.modal-close {
+  width: utils.pxToRem(40px);
+  height: utils.pxToRem(40px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: utils.pxToRem(10px);
+  right: utils.pxToRem(10px);
+  background: none;
+  border: none;
+  font-size: utils.pxToRem(24px);
+  color: utils.$gray;
+  cursor: pointer;
+
+  &:hover {
+    color: utils.$danger-red;
+  }
+
+  [data-theme="dark"] & {
+    color: utils.$soft-gray;
+
+    &:hover {
+      color: utils.$tomato;
+    }
+  }
+}
+
+@keyframes fadeInOverlay {
   from {
-    transform: translateY(30px);
     opacity: 0;
   }
   to {
-    transform: translateY(0);
     opacity: 1;
   }
 }
 
-/* Botón de cerrar */
-.modal-close {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  background: none;
-  border: none;
-  font-size: 20px;
-  color: #aaa;
-  cursor: pointer;
-  transition: color 0.3s;
-}
-
-.modal-close:hover {
-  color: #333;
-}
-
-/* Estilos para el contenido dentro del modal */
-.modal-content {
-  margin-top: 20px;
-}
-
-/* Añadir algunos márgenes y espaciado en el formulario o contenido */
-.task-form {
-  display: flex;
-  flex-direction: column;
-}
-
-.task-form-group {
-  margin-bottom: 20px;
-}
-
-input, textarea, select {
-  width: 100%;
-  padding: 10px;
-  margin-top: 5px;
-  border-radius: 4px;
-  border: 1px solid #ddd;
-  font-size: 16px;
-}
-
-textarea {
-  height: 120px;
-}
-
-button {
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  background-color: #4CAF50;
-  color: white;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px;
-}
-
-button:hover {
-  background-color: #45a049;
-}
-
-/* Estilos del botón de cancelar */
-.task-form-btn.cancel {
-  background-color: #f44336;
-}
-
-.task-form-btn.cancel:hover {
-  background-color: #e53935;
-}
-
-/* Si hay error */
-.task-form-error {
-  color: #f44336;
-  font-size: 14px;
-  margin-bottom: 15px;
+@keyframes modalIn {
+  from {
+    transform: scale(0.8);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
 }

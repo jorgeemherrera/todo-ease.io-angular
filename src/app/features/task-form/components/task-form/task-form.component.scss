@@ -1,0 +1,268 @@
+@use "../../../../../styles/utils";
+
+
+.task-form-group {
+    margin-bottom: utils.pxToRem(16px);
+
+    label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: utils.pxToRem(8px);
+    }
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+        padding: utils.pxToRem(12px);
+        border: utils.pxToRem(1px) solid utils.$platinum;
+        border-radius: utils.pxToRem(8px);
+        font-size: utils.pxToRem(16px);
+        background-color: utils.$white-lilac;
+        transition:
+            border-color 0.3s,
+            box-shadow 0.3s;
+
+        &:focus {
+            border-color: utils.$violet;
+            box-shadow: 0 0 utils.pxToRem(4px) utils.$violet;
+            outline: none;
+        }
+
+        &::placeholder {
+            color: utils.$gray-alt;
+        }
+
+        [data-theme="dark"] & {
+            background-color: utils.$cool-gray;
+            color: utils.$light-silver;
+            border-color: utils.$dark-charcoal;
+
+            &::placeholder {
+                color: utils.$blue-gray-alt;
+            }
+        }
+    }
+}
+
+textarea {
+    resize: none;
+}
+
+
+.task-form-checklist {
+  margin-top: utils.pxToRem(20px);
+
+  &-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    h3 {
+      font-size: utils.pxToRem(20px);
+      font-weight: bold;
+      margin: 0;
+    }
+
+    .add-btn {
+      background-color: utils.$violet;
+      color: utils.$white;
+      border: none;
+      padding: utils.pxToRem(8px) utils.pxToRem(16px);
+      border-radius: utils.pxToRem(8px);
+      cursor: pointer;
+      transition: background-color 0.3s;
+
+      &:hover {
+        background-color: utils.$electric-purple;
+      }
+
+      [data-theme="dark"] & {
+        background-color: utils.$amethyst;
+
+        &:hover {
+          background-color: utils.$lavender-blue;
+        }
+      }
+    }
+  }
+
+  &-items {
+    margin-top: utils.pxToRem(16px);
+    max-height: utils.pxToRem(80px);
+    overflow-y: auto;
+    padding: 0;
+    border: utils.pxToRem(1px) solid utils.$grayish-white;
+    border-radius: utils.pxToRem(8px);
+    background-color: utils.$white-lilac;
+
+    [data-theme="dark"] & {
+      background-color: utils.$dark-charcoal;
+      border: none;
+    }
+
+    &::-webkit-scrollbar {
+      width: utils.pxToRem(8px);
+    }
+
+    &::-webkit-scrollbar-thumb {
+      background-color: utils.$light-gray-alt;
+      border-radius: utils.pxToRem(4px);
+
+      [data-theme="dark"] & {
+        background-color: utils.$cool-gray;
+      }
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: utils.pxToRem(12px);
+      padding: utils.pxToRem(12px);
+      background-color: utils.$white;
+      border-radius: utils.pxToRem(8px);
+      margin-bottom: utils.pxToRem(8px);
+      transition: transform 0.2s;
+
+      [data-theme="dark"] & {
+        background-color: utils.$ash-gray;
+      }
+
+      &.overdue {
+        background-color: utils.$light-pink;
+        border: utils.pxToRem(1px) solid utils.$tomato;
+
+        [data-theme="dark"] & {
+          background-color: utils.$mahogany;
+          border-color: utils.$salmon;
+        }
+      }
+
+      input[type="checkbox"] {
+        appearance: none;
+        width: utils.pxToRem(20px);
+        height: utils.pxToRem(20px);
+        border: utils.pxToRem(2px) solid utils.$violet;
+        border-radius: utils.pxToRem(4px);
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+
+        &:checked {
+          background-color: utils.$violet;
+          border-color: utils.$violet;
+        }
+
+        &:focus {
+          outline: none;
+          box-shadow: 0 0 utils.pxToRem(4px) rgba(utils.$violet, 0.5);
+        }
+
+        [data-theme="dark"] & {
+          border-color: utils.$amethyst;
+
+          &:checked {
+            background-color: utils.$amethyst;
+          }
+        }
+      }
+
+      input[type="text"],
+      input[type="date"] {
+        flex: 1;
+        padding: utils.pxToRem(10px);
+        border: utils.pxToRem(1px) solid utils.$platinum;
+        border-radius: utils.pxToRem(8px);
+        font-size: utils.pxToRem(14px);
+        transition: border-color 0.3s;
+
+        &:focus {
+          border-color: utils.$violet;
+          box-shadow: 0 0 utils.pxToRem(4px) utils.$violet;
+          outline: none;
+        }
+
+        [data-theme="dark"] & {
+          background-color: utils.$cool-gray;
+          border-color: utils.$dark-charcoal;
+          color: utils.$light-silver;
+        }
+      }
+
+      .task-form-delete-btn {
+        background-color: none;
+        border: none;
+        color: utils.$tomato;
+        width: utils.pxToRem(20px);
+        font-size: utils.pxToRem(18px);
+        cursor: pointer;
+        transition: color 0.3s;
+
+        &:hover {
+          color: utils.$red;
+        }
+
+        [data-theme="dark"] & {
+          color: utils.$salmon;
+
+          &:hover {
+            color: utils.$red;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+
+.task-form-actions {
+	display: flex;
+	justify-content: space-between;
+	margin-top: utils.pxToRem(20px);
+
+	button {
+			padding: utils.pxToRem(12px) utils.pxToRem(24px);
+			font-size: utils.pxToRem(16px);
+			border-radius: utils.pxToRem(8px);
+			cursor: pointer;
+			transition: background-color 0.3s;
+
+			&.cancel {
+					background-color: utils.$grayish-white;
+					border: none;
+
+					&:hover {
+							background-color: utils.$silver;
+					}
+
+					[data-theme="dark"] & {
+							background-color: utils.$cool-gray;
+							color: utils.$light-silver;
+
+							&:hover {
+									background-color: utils.$gunmetal;
+							}
+					}
+			}
+
+			&.save {
+					background-color: utils.$violet;
+					color: utils.$white;
+					border: none;
+					cursor: pointer;
+					transition: background-color 0.3s;
+
+					&.save:hover {
+							background-color: utils.$electric-purple;
+					}
+
+					[data-theme="dark"] & {
+							background-color: utils.$amethyst;
+
+							&:hover {
+									background-color: utils.$lavender-blue;
+							}
+					}
+			}
+	}
+}
