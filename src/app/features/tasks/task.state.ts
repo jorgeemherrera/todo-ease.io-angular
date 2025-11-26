@@ -9,5 +9,3 @@ export interface Task {
 }[];
   status: "Open" | "In Progress" | "Completed" | "Overdue"; 
 }
-
-type statusTask = "Open" | "In Progress" | "Completed" | "Overdue";  
