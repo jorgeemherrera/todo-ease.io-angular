@@ -39,4 +39,4 @@ jobs:
       - name: Deploy to S3 (MASTER)
         run: |
           echo "Deploying to MASTER S3 bucket..."
-          aws s3 sync dist/ s3://${{ secrets.S3_BUCKET}} --delete
+          aws s3 sync dist/todo-ease.io-angular/browser/ s3://${{ secrets.S3_BUCKET}} --delete
